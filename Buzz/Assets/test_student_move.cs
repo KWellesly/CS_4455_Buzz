@@ -30,6 +30,7 @@ public class test_student_move : MonoBehaviour
         anim.SetFloat("VelY", y);
         //transform.position += (Vector3.forward * MaxSpeed) * y * Time.deltaTime;
         //transform.position += (Vector3.right * MaxSpeed) * x * Time.deltaTime;
+        transform.Rotate(0,x,0);
 
     }
 }
