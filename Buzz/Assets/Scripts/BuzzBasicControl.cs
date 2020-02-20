@@ -77,8 +77,6 @@ public class BuzzBasicControl : MonoBehaviour
         rbody.MovePosition(rbody.position + this.transform.forward * inputForward * Time.deltaTime * forwardMaxSpeed);
         rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up)); // TODO: Turning not working 
 
-        Debug.Log(inputTurn);
-
         //anim.SetFloat("velx", inputTurn); // disabled rotation input for animation 
         anim.SetFloat("vely", inputForward);
         anim.SetBool("isFalling", !isGrounded);

@@ -56,9 +56,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\ai_test.cs" />
+     <Compile Include="Assets\CameraControlScript.cs" />
      <Compile Include="Assets\Scripts\BuzzBasicControl.cs" />
      <Compile Include="Assets\Scripts\BuzzInputController.cs" />
      <Compile Include="Assets\Scripts\BuzzRootMotion.cs" />
+     <Compile Include="Assets\Scripts\CamControlScript.cs" />
      <Compile Include="Assets\test_no_root.cs" />
      <Compile Include="Assets\test_student_move.cs" />
  <Reference Include="Unity.Timeline.Editor">
