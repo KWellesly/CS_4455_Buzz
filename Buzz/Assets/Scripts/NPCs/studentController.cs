@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test_no_root : MonoBehaviour
+public class studentController : MonoBehaviour
 {
     private Animator anim;
-    public float MaxSpeed = 1f;
+    public float MaxSpeed = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +28,9 @@ public class test_no_root : MonoBehaviour
     {
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
-        transform.position += (Vector3.forward * MaxSpeed) * y * Time.deltaTime;
-        transform.position += (Vector3.right * MaxSpeed) * x * Time.deltaTime;
+        //transform.position += (Vector3.forward * MaxSpeed) * y * Time.deltaTime;
+        //transform.position += (Vector3.right * MaxSpeed) * x * Time.deltaTime;
+        transform.Rotate(0,x * 5,0);
 
     }
 }
