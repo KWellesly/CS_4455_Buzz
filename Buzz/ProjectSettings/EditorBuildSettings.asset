@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: 83e984acfab044831a8d18c39defea34
+  - enabled: 1
     path: Assets/Scenes/Eric_sandbox.unity
     guid: b64f27ed20716ed42b126a64f2548f9a
   - enabled: 1
-    path: Assets/Scenes/StartMenu.unity
-    guid: 83e984acfab044831a8d18c39defea34
+    path: Assets/Scenes/PauseMenu.unity
+    guid: e1b317e6017f848e783a3f41d88323cd
   m_configObjects: {}

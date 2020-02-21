@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{5A2C95A8-4C8A-57D5-364A-A3B9ECBD985F}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menu/StartGame.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menu/UnpauseGame.cs">
     <Files>
-      <File FileName="Assets/Scripts/Menu/StartGame.cs" Line="10" Column="48" />
-      <File FileName="Assets/Scripts/Menu/QuitGame.cs" Line="13" Column="1" />
+      <File FileName="Assets/Scripts/Menu/StartGame.cs" Line="10" Column="29" />
+      <File FileName="Assets/Scripts/Menu/UnpauseGame.cs" Line="15" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,7 +11,7 @@
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
                 <Node name="Menu" expanded="True">
-                  <Node name="StartGame.cs" selected="True" />
+                  <Node name="UnpauseGame.cs" selected="True" />
                 </Node>
               </Node>
             </Node>
@@ -22,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="3279d9b7-f8d6-4397-897c-e08223a8a3d1" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="86dea5e4-b6fe-4556-98fc-86fd429e8f8a" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
