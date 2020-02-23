@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ai_test.cs" />
+    <Compile Include="Assets\Scripts\GoToPlayableGame.cs" />
+    <Compile Include="Assets\Scripts\Menu\OpenDialogNext.cs" />
     <Compile Include="Assets\Scripts\Menu\QuitGame.cs" />
     <Compile Include="Assets\Scripts\Menu\StartGame.cs" />
     <Compile Include="Assets\Scripts\Menu\UnpauseGame.cs" />
@@ -87,20 +89,20 @@
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>/Users/allyliu/Documents/Video Game Design/Alpha/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Hub/Editor/2019.2.17f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 83e984acfab044831a8d18c39defea34
   - enabled: 1
+    path: Assets/Scenes/OpeningDialog.unity
+    guid: 98686d26fdfd24a3ba9e1d30ffa84ff5
+  - enabled: 1
     path: Assets/Scenes/Eric_sandbox.unity
     guid: b64f27ed20716ed42b126a64f2548f9a
   - enabled: 1
