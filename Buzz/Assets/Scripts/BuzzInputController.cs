@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class BuzzInputController : MonoBehaviour
 {
     public string Name = "Buzz";
+    public Animator anim;
 
     private float filteredForwardInput = 0f;
     private float filteredTurnInput = 0f;
@@ -15,6 +17,7 @@ public class BuzzInputController : MonoBehaviour
     public float turnInputFilter = 5f;
 
     private float forwardSpeedLimit = 1f;
+    private SlapperScript slapScript;
 
     public float Forward
     {
@@ -34,6 +37,10 @@ public class BuzzInputController : MonoBehaviour
         private set;
     }
 
+    void Awake() {
+        anim = GetComponent<Animator>();
+        slapScript = this.GetComponent<SlapperScript>();
+    }
 
     void Update()
     {
@@ -72,5 +79,10 @@ public class BuzzInputController : MonoBehaviour
         Forward = filteredForwardInput;
         Turn = filteredTurnInput;
         Action = Input.GetButtonDown("Fire1");
+    }
+
+    public void FixedUpdate()
+    {
+        anim.SetBool("Slap", slapScript.isSlappable && Input.GetButtonDown("Fire1"));
     }
 }
