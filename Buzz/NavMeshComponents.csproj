@@ -11,10 +11,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{5A2C95A8-4C8A-57D5-364A-A3B9ECBD985F}</ProjectGuid>
+    <ProjectGuid>{59FCF886-E6AE-3259-749C-59618601960A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>NavMeshComponents</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -55,57 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraControlScript.cs" />
-     <Compile Include="Assets\Fighter Pack Bundle FREE\Code\CameraControl.cs" />
-     <Compile Include="Assets\Fighter Pack Bundle FREE\Code\FighterAnimationDemoFREE.cs" />
-     <Compile Include="Assets\HittableScript.cs" />
-     <Compile Include="Assets\Scripts\BuzzBasicControl.cs" />
-     <Compile Include="Assets\Scripts\BuzzInputController.cs" />
-     <Compile Include="Assets\Scripts\BuzzRootMotion.cs" />
-     <Compile Include="Assets\Scripts\CamControlScript.cs" />
-     <Compile Include="Assets\Scripts\Collectible.cs" />
-     <Compile Include="Assets\Scripts\GoToPlayableGame.cs" />
-     <Compile Include="Assets\Scripts\Menu\OpenDialogNext.cs" />
-     <Compile Include="Assets\Scripts\Menu\QuitGame.cs" />
-     <Compile Include="Assets\Scripts\Menu\StartGame.cs" />
-     <Compile Include="Assets\Scripts\Menu\UnpauseGame.cs" />
-     <Compile Include="Assets\Scripts\NPCs\policeController.cs" />
-     <Compile Include="Assets\Scripts\NPCs\studentController.cs" />
-     <Compile Include="Assets\Scripts\PowerupCollector.cs" />
-     <Compile Include="Assets\SlapperScript.cs" />
-     <Compile Include="Assets\testRagdoll.cs" />
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
+     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
+     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
+     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
+     <None Include="Assets\NavMeshComponents\Scripts\NavMeshComponents.asmdef" />
+ <Reference Include="UnityEditor.UI">
+ <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Editor">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Runtime">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/Mitch/Desktop/CS_4455_Buzz/Buzz/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -283,6 +242,15 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.VR">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Graphs">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -629,16 +597,6 @@
  <Reference Include="System.Xml.Serialization">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.3f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="NavMeshComponentsEditor.csproj">
-      <Project>{C96C5740-5273-76B2-13EE-C00E1F2FC96F}</Project>
-      <Name>NavMeshComponentsEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="NavMeshComponents.csproj">
-      <Project>{59FCF886-E6AE-3259-749C-59618601960A}</Project>
-      <Name>NavMeshComponents</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
