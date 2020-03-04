@@ -11,6 +11,10 @@ public class studentController : MonoBehaviour
 
     public Camera cam;
     public NavMeshAgent agent;
+
+    // for student waypoints
+    public GameObject[] waypoints;
+    private int currWaypoint; 
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +22,9 @@ public class studentController : MonoBehaviour
         //for ragdolling
         SetKinematic(true);
         isRagdoll = false;
+
+        currWaypoint = -1;
+        setNextWaypoint();
         
     }
 
@@ -46,6 +53,11 @@ public class studentController : MonoBehaviour
 			SetKinematic(false);
 			GetComponent<Animator>().enabled=false;
 		}
+        if (agent.remainingDistance == 0 && !agent.pathPending)
+        {
+            setNextWaypoint();
+        }
+        /**
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -57,6 +69,7 @@ public class studentController : MonoBehaviour
 
             }
         }
+    */
 
         anim.SetFloat("VelY", agent.velocity.magnitude);
     }
@@ -79,4 +92,11 @@ public class studentController : MonoBehaviour
 			rb.isKinematic=newValue;
 		}
 	}
+
+    void setNextWaypoint()
+    {
+        //currWaypoint = (currWaypoint + 1) % waypoints.Length;
+        currWaypoint = (int) Random.Range(0, waypoints.Length);
+        agent.SetDestination(waypoints[currWaypoint].transform.position);
+    }
 }
