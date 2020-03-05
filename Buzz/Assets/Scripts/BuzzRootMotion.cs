@@ -17,6 +17,7 @@ public class BuzzRootMotion : MonoBehaviour
     public float animationSpeed = 1.2f;
     public float rootMovementSpeed = 2f;
     public float rootTurnSpeed = 30f;
+    public float turnMaxSpeed = 65f;
 
     // Jump
     public float jumpableGroundNormalMaxAngle = 45f;
@@ -69,12 +70,16 @@ public class BuzzRootMotion : MonoBehaviour
             inputForward = cinput.Forward;
             inputTurn = cinput.Turn;
             inputAction = cinput.Action;
-
         }
+
+        //switch turn around if going backwards
+        if (inputForward < 0f)
+            inputTurn = -inputTurn;
 
         // Jump
         bool isGrounded = IsGrounded;// || CharacterCommon.CheckGroundNear(this.transform.position, jumpableGroundNormalMaxAngle, 0.1f, 1f, out closeToJumpableGround);
-        
+
+        rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up));
         // Movement
         anim.SetFloat("velx", inputTurn);
         anim.SetFloat("vely", inputForward);
