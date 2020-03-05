@@ -45,7 +45,6 @@ public class HittableScript : MonoBehaviour
     {
         if (player != null && (Vector3.Distance(player.transform.position, this.transform.position) > 2.2))
         {
-            Debug.Log(Vector3.Distance(player.transform.position, this.transform.position));
             isSlappable = false;
         }
 

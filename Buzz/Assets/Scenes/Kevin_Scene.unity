@@ -2552,6 +2552,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.06885666
       objectReference: {fileID: 0}
+    - target: {fileID: 4920594328939339789, guid: 1f38e9c9c338792409c6acda5c29a280,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f38e9c9c338792409c6acda5c29a280, type: 3}
 --- !u!1001 &416073844
@@ -4683,6 +4688,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: latteSpeedMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: whiteClawSpeedPenalty
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2250889323600249009, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
       propertyPath: animationSpeed
@@ -7923,6 +7938,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.06885661
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333009415951513032, guid: 1f38e9c9c338792409c6acda5c29a280,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3333009415951513033, guid: 1f38e9c9c338792409c6acda5c29a280,
         type: 3}
@@ -12445,6 +12465,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[34]
       value: 
       objectReference: {fileID: 1584222108}
+    - target: {fileID: 3333009416081880010, guid: 1f38e9c9c338792409c6acda5c29a280,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3333009416081880011, guid: 1f38e9c9c338792409c6acda5c29a280,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12499,6 +12524,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333009416081880054, guid: 1f38e9c9c338792409c6acda5c29a280,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3333009416081880055, guid: 1f38e9c9c338792409c6acda5c29a280,
         type: 3}
@@ -14547,6 +14577,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[34]
       value: 
       objectReference: {fileID: 1584222108}
+    - target: {fileID: 3333009416081880010, guid: 1f38e9c9c338792409c6acda5c29a280,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3333009416081880011, guid: 1f38e9c9c338792409c6acda5c29a280,
         type: 3}
       propertyPath: m_LocalPosition.x

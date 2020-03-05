@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BuzzBasicControl))]
+[RequireComponent(typeof(BuzzRootMotion))]
 public class PowerupCollector : MonoBehaviour
 {
 
     public bool hasLatte;
-    public float latteSpeedMultiplier;
+    public float latteSpeedMultiplier=2;
     public bool startExpireLatte;
     public float latteDuration;
 
     public bool hasDonut;
 
     public bool hasWhiteClaw;
-    public float whiteClawSpeedPenalty;
+    public float whiteClawSpeedPenalty=2;
     public bool startExpireWhiteClaw;
     public float whiteClawDuration;
 
@@ -23,14 +23,14 @@ public class PowerupCollector : MonoBehaviour
     private float startLatteTime;
     private float startWhiteClawTime;
 
-    private BuzzBasicControl motion;
+    private BuzzRootMotion motion;
 
     // Start is called before the first frame update
     void Start()
     {
         hasDonut = hasWhiteClaw = hasLatte = false;
         startExpireLatte = startExpireWhiteClaw = false;
-        motion = GetComponent<BuzzBasicControl>();
+        motion = GetComponent<BuzzRootMotion>();
     }
 
     // Update is called once per frame
@@ -79,14 +79,15 @@ public class PowerupCollector : MonoBehaviour
 
     public void InitLatteSpeedup(float factor)
     {
-        motion.forwardMaxSpeed *= factor;
+        Debug.Log(factor);
+        motion.rootMovementSpeed *= factor;
         motion.turnMaxSpeed *= factor;
         startLatteTime = Time.time;
         startExpireLatte = true;
     }
     public void ExpireLatte(float factor)
     {
-        motion.forwardMaxSpeed /= factor;
+        motion.rootMovementSpeed /= factor;
         motion.turnMaxSpeed /= factor;
         hasLatte = startExpireLatte = false;
     }
@@ -98,7 +99,7 @@ public class PowerupCollector : MonoBehaviour
 
     public void InitWhiteClawSlowdown(float factor)
     {
-        motion.forwardMaxSpeed /= factor;
+        motion.rootMovementSpeed /= factor;
         motion.turnMaxSpeed /= factor;
         startWhiteClawTime = Time.time;
         startExpireWhiteClaw = true;
@@ -106,7 +107,7 @@ public class PowerupCollector : MonoBehaviour
 
     public void ExpireWhiteClaw(float factor)
     {
-        motion.forwardMaxSpeed *= factor;
+        motion.rootMovementSpeed *= factor;
         motion.turnMaxSpeed *= factor;
         hasWhiteClaw = startExpireWhiteClaw = false;
     }

@@ -192,9 +192,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
-  player: {fileID: 0}
   isSlappable: 0
   target: {fileID: 0}
+  match: 0
 --- !u!4 &328623176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2250889323600249021, guid: bd9ebc3c8a0b423449fb1ae70de22d47,
@@ -213,9 +213,9 @@ GameObject:
   - component: {fileID: 695498337}
   - component: {fileID: 695498336}
   - component: {fileID: 695498335}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
