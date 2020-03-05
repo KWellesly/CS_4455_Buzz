@@ -2,4 +2,15 @@ Buzz/Library/*
 Buzz/Temp/*
 Buzz/*.sln
 Buzz/*.csproj
+
 *.vs
+*.sln
+*.csproj
+
+# Unity3D generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Crashlytics generated file
+crashlytics-build.properties
