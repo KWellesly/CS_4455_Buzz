@@ -38,7 +38,7 @@ public class BuzzInputController : MonoBehaviour
     }
 
     void Awake() {
-        anim = GetComponent<Animator>();
+        anim = this.GetComponent<Animator>();
         slapScript = this.GetComponent<SlapperScript>();
     }
 

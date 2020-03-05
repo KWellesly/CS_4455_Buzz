@@ -6,7 +6,6 @@ using UnityEngine;
 public class SlapperScript : MonoBehaviour
 {
     public Animator anim;
-    public Collider player = null;
     public bool isSlappable = false;
     public GameObject target; 
 
@@ -46,6 +45,7 @@ public class SlapperScript : MonoBehaviour
                 target = c.attachedRigidbody.gameObject;
             }
             isSlappable = hs != null;
+            Debug.Log(isSlappable);
         }
     }
 

@@ -75,7 +75,7 @@ public class BuzzBasicControl : MonoBehaviour
         bool isGrounded = IsGrounded; //|| CharacterCommon.CheckGroundNear(this.transform.position, jumpableGroundNormalMaxAngle, 0.1f, 1f, out closeToJumpableGround);
 
         rbody.MovePosition(rbody.position + this.transform.forward * inputForward * Time.deltaTime * forwardMaxSpeed);
-        rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up)); // TODO: Turning not working 
+        rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up));  
 
         //anim.SetFloat("velx", inputTurn); // disabled rotation input for animation 
         anim.SetFloat("vely", inputForward);
