@@ -7,7 +7,10 @@ public class SlapperScript : MonoBehaviour
 {
     public Animator anim;
     public bool isSlappable = false;
-    public GameObject target; 
+    public GameObject target;
+
+    public float initalMatchTargetsAnimTime = 0.25f;
+    public float exitMatchTargetsAnimTime = 0.75f;
 
     private Rigidbody rbody;
     public bool match = false; 
@@ -22,6 +25,16 @@ public class SlapperScript : MonoBehaviour
             anim.SetBool("Slap", isSlappable);
             match = true; // Set for match target
         }
+        /**
+        if (match)
+        {
+            var t = target.transform;
+            anim.MatchTarget(t.position, t.rotation, AvatarTarget.Root,
+                    new MatchTargetWeightMask(new Vector3(1f, 0f, 1f), 1f),
+                       initalMatchTargetsAnimTime,
+                       exitMatchTargetsAnimTime);
+            match = false;
+        }*/
     }
 
     void OnTriggerEnter(Collider c)
@@ -79,7 +92,7 @@ public class SlapperScript : MonoBehaviour
             AnimatorStateInfo astate = anim.GetCurrentAnimatorStateInfo(1);
             if (astate.IsName("Slapping"))
             {
-                float weight = 0.5f;
+                float weight = anim.GetFloat("SlapWeight");
                 Transform headTransform = target.transform.Find("DummySkeleton/root/B-hips/B-spine/B-chest/B-upperChest/B-neck/B-head");
                 // Set the look target position, if one has been assigned
                 if (target != null)
