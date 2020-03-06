@@ -30,10 +30,12 @@ public class SlapperScript : MonoBehaviour
         {
             var t = target.transform;
             anim.MatchTarget(t.position, t.rotation, AvatarTarget.Root,
-                    new MatchTargetWeightMask(new Vector3(1f, 0f, 1f), 1f),
+                    new MatchTargetWeightMask(new Vector3(1f, 0f, 1f), 1f), <-- Use mask to only set rotation
                        initalMatchTargetsAnimTime,
                        exitMatchTargetsAnimTime);
             match = false;
+        // 1: use the root and matchTarget code 
+        // 2: rotation with programatic (nonroot motion) 
         }*/
     }
 
@@ -82,6 +84,7 @@ public class SlapperScript : MonoBehaviour
             float str = Mathf.Min(0.75f * Time.deltaTime, 1);
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, targetRotation, str);
             match = false; // Only match once 
+        // TRY: Rigid body move to position 
         }
     }*/
        
@@ -93,6 +96,7 @@ public class SlapperScript : MonoBehaviour
             if (astate.IsName("Slapping"))
             {
                 float weight = anim.GetFloat("SlapWeight");
+                Debug.Log(weight);
                 Transform headTransform = target.transform.Find("DummySkeleton/root/B-hips/B-spine/B-chest/B-upperChest/B-neck/B-head");
                 // Set the look target position, if one has been assigned
                 if (target != null)

@@ -18,8 +18,8 @@ TagManager:
   - postprocessing
   - Ground
   - Wall
-  - 
-  - 
+  - Player
+  - Ragdoll
   - 
   - 
   - 
