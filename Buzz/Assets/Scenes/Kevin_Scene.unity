@@ -2487,10 +2487,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3333009416081880054, guid: 1f38e9c9c338792409c6acda5c29a280,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3333009416081880055, guid: 1f38e9c9c338792409c6acda5c29a280,
         type: 3}
       propertyPath: m_Name
       value: Student RootMotion (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333009416081880055, guid: 1f38e9c9c338792409c6acda5c29a280,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3333009416230447426, guid: 1f38e9c9c338792409c6acda5c29a280,
         type: 3}
@@ -11102,9 +11112,9 @@ GameObject:
   - component: {fileID: 1603396323}
   - component: {fileID: 1603396322}
   - component: {fileID: 1603396321}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sidewalk_05 (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8

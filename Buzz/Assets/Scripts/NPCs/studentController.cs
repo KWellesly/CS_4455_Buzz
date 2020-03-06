@@ -48,6 +48,8 @@ public class studentController : MonoBehaviour
         var y = Input.GetAxis("Vertical");
         move(x, y);
         */
+        // TODO: Recursion for all children that have rigid bodies 
+        // TODO 2: Set Force Velocity Mode 0
         if (Input.GetKeyDown(KeyCode.Space))
 		{
 			SetKinematic(false);
