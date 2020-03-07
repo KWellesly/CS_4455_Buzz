@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class policeController : MonoBehaviour
 {
     private Animator anim;
+    private Transform tr;
     public float MaxSpeed = 1;
+    public UnityEngine.AI.NavMeshAgent agent;
+    public GameObject buzz; 
+    
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        tr = GetComponent<Transform>();
         
     }
 
@@ -20,17 +26,25 @@ public class policeController : MonoBehaviour
         {
             return;
         }
-        var x = Input.GetAxis("Horizontal");
-        var y = Input.GetAxis("Vertical");
-        move(x, y);
-    }
-    void move(float x, float y)
-    {
-        anim.SetFloat("VelX", x);
-        anim.SetFloat("VelY", y);
-        //transform.position += (Vector3.forward * MaxSpeed) * y * Time.deltaTime;
-        //transform.position += (Vector3.right * MaxSpeed) * x * Time.deltaTime;
-        transform.Rotate(0,x * 10,0);
 
+        //I used distance btwn buzz and the cop, if buzz is close enough, pathfind to him
+        //Implement donut chase lofic here maybe?
+        Vector3 distVec = buzz.transform.position - tr.position;
+        float dist = distVec.magnitude;
+        if (dist < 15)
+        {
+            agent.SetDestination(buzz.transform.position);
+            //print("BUZZ!!!!!!!!");
+        }
+        anim.SetFloat("VelY", agent.velocity.magnitude);
+    }
+    void OnTriggerEnter(Collider x)
+    {
+        //print("Collided" + x.gameObject.tag);
+        if (x.gameObject.tag == "Player")
+        {
+            //TODO actually add in the game over screen for when the cop touches buzz, just call scene manager
+            print("Game should end now");
+        }
     }
 }

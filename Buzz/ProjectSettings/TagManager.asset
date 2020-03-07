@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Collectible
+  - Police
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Wall
   - Player
   - Ragdoll
-  - 
+  - Police
   - 
   - 
   - 

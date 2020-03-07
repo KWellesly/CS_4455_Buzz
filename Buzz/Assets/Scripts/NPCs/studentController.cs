@@ -9,7 +9,6 @@ public class studentController : MonoBehaviour
     private Animator anim;
     public float MaxSpeed = 1;
 
-    public Camera cam;
     public NavMeshAgent agent;
 
     // for student waypoints
