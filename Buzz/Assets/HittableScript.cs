@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(Rigidbody))]
+[RequireComponent(typeof(Animator))]
 public class HittableScript : MonoBehaviour
 {
     public Animator anim;
     public Collider player = null;
     public bool isSlappable = false; 
 
-    private Rigidbody rbody;
+
 
     void Awake()
     {
@@ -18,9 +18,9 @@ public class HittableScript : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        if (c.attachedRigidbody != null)
+        if (c != null)
         {
-            PowerupCollector pc = c.attachedRigidbody.gameObject.GetComponent<PowerupCollector>(); // Only SomeDude_RootMotion has ball collector 
+            PowerupCollector pc = c.gameObject.GetComponent<PowerupCollector>(); // Only SomeDude_RootMotion has ball collector 
             if (pc != null)
             {
                 player = c;
@@ -30,9 +30,9 @@ public class HittableScript : MonoBehaviour
     }
     void OnTriggerStay(Collider c)
     {
-        if (c.attachedRigidbody != null)
+        if (c != null)
         {
-            PowerupCollector pc = c.attachedRigidbody.gameObject.GetComponent<PowerupCollector>(); // Only SomeDude_RootMotion has ball collector 
+            PowerupCollector pc = c.gameObject.GetComponent<PowerupCollector>(); // Only SomeDude_RootMotion has ball collector 
             if (pc != null)
             {
                 player = c;

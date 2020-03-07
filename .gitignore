@@ -14,3 +14,7 @@ Buzz/*.csproj
 
 # Crashlytics generated file
 crashlytics-build.properties
+Buzz/NavMeshComponentsEditor.csproj
+Buzz/ProjectSettings/EditorBuildSettings.asset
+Buzz/NavMeshComponents.csproj
+Buzz/Assembly-CSharp.csproj

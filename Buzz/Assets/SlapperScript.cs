@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(Rigidbody))]
+[RequireComponent(typeof(Animator))]
 public class SlapperScript : MonoBehaviour
 {
     public Animator anim;
@@ -12,8 +12,8 @@ public class SlapperScript : MonoBehaviour
     public float initalMatchTargetsAnimTime = 0.25f;
     public float exitMatchTargetsAnimTime = 0.75f;
 
-    private Rigidbody rbody;
     public bool match = false; 
+    private Collider targetStudent;
 
     void Awake()
     {
@@ -41,12 +41,12 @@ public class SlapperScript : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        if (c.attachedRigidbody != null)
+        if (c != null)
         {
-            HittableScript hs = c.attachedRigidbody.gameObject.GetComponent<HittableScript>(); // Only SomeDude_RootMotion has ball collector 
+            HittableScript hs = c.gameObject.GetComponent<HittableScript>(); // Only SomeDude_RootMotion has ball collector 
             if (hs != null)
             {
-                target = c.attachedRigidbody.gameObject;
+                target = c.gameObject;
             }
             isSlappable = hs != null;
         }
@@ -54,14 +54,15 @@ public class SlapperScript : MonoBehaviour
 
     void OnTriggerStay(Collider c)
     {
-        if (c.attachedRigidbody != null)
+        if (c != null)
         {
-            HittableScript hs = c.attachedRigidbody.gameObject.GetComponent<HittableScript>(); // Only SomeDude_RootMotion has ball collector 
+            HittableScript hs = c.gameObject.GetComponent<HittableScript>(); // Only SomeDude_RootMotion has ball collector
             if (hs != null)
             {
-                target = c.attachedRigidbody.gameObject;
+                target = c.gameObject;
             }
             isSlappable = hs != null;
+            targetStudent = c;
         }
     }
 
@@ -107,6 +108,9 @@ public class SlapperScript : MonoBehaviour
                     anim.SetIKPosition(AvatarIKGoal.RightHand,
                     headTransform.position);
                     // TODO: Ragdolling 
+
+                    studentController sc = targetStudent.gameObject.GetComponent<studentController>();
+                    sc.isRagdoll = true;
                 }
             }
             else

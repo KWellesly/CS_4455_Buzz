@@ -2162,6 +2162,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 497352736}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3333009415688168075, guid: 1f38e9c9c338792409c6acda5c29a280,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -2561,11 +2565,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: -0.06885666
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920594328939339789, guid: 1f38e9c9c338792409c6acda5c29a280,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f38e9c9c338792409c6acda5c29a280, type: 3}

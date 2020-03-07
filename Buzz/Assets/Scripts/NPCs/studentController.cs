@@ -31,26 +31,22 @@ public class studentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || isRagdoll)
+        if (isRagdoll)
 		{
 			SetKinematic(false);
 			GetComponent<Animator>().enabled=false;
             isRagdoll = true;
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            gameObject.GetComponent<HittableScript>().enabled = false;
             return;
 		}
         if (anim == null)
         {
             return;
         }
-        /*
-        var x = Input.GetAxis("Horizontal");
-        var y = Input.GetAxis("Vertical");
-        move(x, y);
-        */
-        // TODO: Recursion for all children that have rigid bodies 
-        // TODO 2: Set Force Velocity Mode 0
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        //keep this duplaicate code here, idk if it will break the animator on ragdoll -Eric :D
+        if (isRagdoll)
 		{
 			SetKinematic(false);
 			GetComponent<Animator>().enabled=false;
@@ -59,19 +55,7 @@ public class studentController : MonoBehaviour
         {
             setNextWaypoint();
         }
-        /**
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                agent.SetDestination(hit.point);
-
-            }
-        }
-    */
 
         anim.SetFloat("VelY", agent.velocity.magnitude);
     }
@@ -87,7 +71,6 @@ public class studentController : MonoBehaviour
 	{
 		//Get an array of components that are of type Rigidbody
 		Rigidbody[] bodies=GetComponentsInChildren<Rigidbody>();
-
 		//For each of the components in the array, treat the component as a Rigidbody and set its isKinematic property
 		foreach (Rigidbody rb in bodies)
 		{
