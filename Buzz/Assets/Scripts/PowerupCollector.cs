@@ -18,17 +18,33 @@ public class PowerupCollector : MonoBehaviour
     public bool startExpireWhiteClaw;
     public float whiteClawDuration;
 
-    public int numBoneFragments = 0;
-
     private float startLatteTime;
     private float startWhiteClawTime;
 
     private BuzzRootMotion motion;
 
+    //ally's
+    public bool usedLatte;
+    public bool usedDonut;
+    public bool usedWhiteClaw;
+
+    //ally's bonebar
+    public BoneBar boneBar;
+    public int maxBoneCount = 10;
+    public int numBoneFragments = 0;
+
     // Start is called before the first frame update
     void Start()
     {
+        numBoneFragments = 0;
+        //sets max number of bones needed to collect
+        boneBar.SetMaxBoneCount(maxBoneCount);
+
+        //sets current bone bar to 0
+        boneBar.SetBoneCount(numBoneFragments);
+
         hasDonut = hasWhiteClaw = hasLatte = false;
+        usedLatte = usedWhiteClaw = usedDonut = false;
         startExpireLatte = startExpireWhiteClaw = false;
         motion = GetComponent<BuzzRootMotion>();
     }
@@ -36,12 +52,12 @@ public class PowerupCollector : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        boneBar.SetBoneCount(numBoneFragments);
     }
 
     void FixedUpdate()
     {
-        if (hasLatte)
+        if (usedLatte)
         {
             if (!startExpireLatte)
             {
@@ -56,7 +72,7 @@ public class PowerupCollector : MonoBehaviour
             
         }
 
-        if (hasWhiteClaw)
+        if (usedWhiteClaw)
         {
             if (!startExpireWhiteClaw)
             {
@@ -113,7 +129,6 @@ public class PowerupCollector : MonoBehaviour
     }
 
 
-
     public void ReceiveDonut()
     {
         hasDonut = true;
@@ -128,5 +143,44 @@ public class PowerupCollector : MonoBehaviour
     public void ReceiveBoneFragment()
     {
         numBoneFragments++;
+    }
+
+
+    //ally's code
+    public bool HasDonut() {
+        return hasDonut;
+    }
+
+    public bool HasWhiteClaw() {
+        return hasWhiteClaw;
+    }
+
+    public bool HasLatte() {
+        return hasLatte;
+    }
+
+    //setters for when user clicks 1,2,3 on keyboard
+    public void SetHasDonut(bool v) {
+        hasDonut = v;
+        usedDonut = !v;
+    }
+
+    public void SetHasWhiteClaw(bool v) {
+        hasWhiteClaw = v;
+        usedWhiteClaw = !v;
+    }
+
+    public void SetHasLatte(bool v) {
+        hasLatte = v;
+        usedLatte = !v;
+    }
+
+    //public functions for bone bar script to use
+    public int GetBoneCount() {
+        return numBoneFragments;
+    }
+
+    public int GetMaxBoneCount() {
+        return maxBoneCount;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimateBoneIcon : MonoBehaviour
 {
 
-	public DummyPlayer player;
+	public PowerupCollector player;
 
 	Animator anim;
     // Start is called before the first frame update
