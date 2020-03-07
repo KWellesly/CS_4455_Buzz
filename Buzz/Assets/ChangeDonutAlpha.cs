@@ -8,7 +8,7 @@ public class ChangeDonutAlpha : MonoBehaviour
     
     Image image;
     Color c;
-    public DummyPlayer player;
+    public PowerupCollector player;
 
     // Start is called before the first frame update
     void Start()

@@ -8,7 +8,7 @@ public class ChangeStarbucksAlpha : MonoBehaviour
     
     Image image;
     Color c;
-    public DummyPlayer player;
+    public PowerupCollector player;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +23,7 @@ public class ChangeStarbucksAlpha : MonoBehaviour
     {
 
     	//checks if player has collected a donut - this will be done in the player script (by ben)
-    	if (player.HasStarbucks()) {
+    	if (player.HasLatte()) {
     		c.a = 1f;
     		image.color = c;
     	}
@@ -31,7 +31,7 @@ public class ChangeStarbucksAlpha : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
         	c.a = 0.33f;
         	image.color = c;
-        	player.SetHasStarbucks(false);
+        	player.SetHasLatte(false);
     		
     	}
     }
