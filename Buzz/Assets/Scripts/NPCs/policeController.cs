@@ -44,7 +44,7 @@ public class policeController : MonoBehaviour
         if (x.gameObject.tag == "Player")
         {
             //TODO actually add in the game over screen for when the cop touches buzz, just call scene manager
-            print("Game should end now");
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
