@@ -7,14 +7,15 @@ public class PowerupCollector : MonoBehaviour
 {
 
     public bool hasLatte;
-    public float latteSpeedMultiplier=2;
+    public float latteSpeedMultiplier=2f;
     public bool startExpireLatte;
     public float latteDuration;
 
     public bool hasDonut;
+    public float donutDuration;
 
     public bool hasWhiteClaw;
-    public float whiteClawSpeedPenalty=2;
+    public float whiteClawSpeedPenalty=2f;
     public bool startExpireWhiteClaw;
     public float whiteClawDuration;
 
@@ -49,14 +50,15 @@ public class PowerupCollector : MonoBehaviour
         motion = GetComponent<BuzzRootMotion>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         boneBar.SetBoneCount(numBoneFragments);
-    }
 
-    void FixedUpdate()
-    {
+        if (usedDonut)
+        {
+            DropDonut();
+        }
+
         if (usedLatte)
         {
             if (!startExpireLatte)
@@ -100,12 +102,13 @@ public class PowerupCollector : MonoBehaviour
         motion.turnMaxSpeed *= factor;
         startLatteTime = Time.time;
         startExpireLatte = true;
+        hasLatte = false;
     }
     public void ExpireLatte(float factor)
     {
         motion.rootMovementSpeed /= factor;
         motion.turnMaxSpeed /= factor;
-        hasLatte = startExpireLatte = false;
+        startExpireLatte = usedLatte = false;
     }
 
     public void ReceiveWhiteClaw()
@@ -119,13 +122,14 @@ public class PowerupCollector : MonoBehaviour
         motion.turnMaxSpeed /= factor;
         startWhiteClawTime = Time.time;
         startExpireWhiteClaw = true;
+        hasWhiteClaw = false;
     }
 
     public void ExpireWhiteClaw(float factor)
     {
         motion.rootMovementSpeed *= factor;
         motion.turnMaxSpeed *= factor;
-        hasWhiteClaw = startExpireWhiteClaw = false;
+        startExpireWhiteClaw = usedWhiteClaw = false;
     }
 
 
@@ -134,9 +138,14 @@ public class PowerupCollector : MonoBehaviour
         hasDonut = true;
     }
 
-    public void ExpireDonut()
+    public void DropDonut()
     {
-        hasDonut = false;
+        usedDonut = hasDonut = false;
+        GameObject donut = Instantiate(Resources.Load("Dropped Donut")) as GameObject;
+
+        Vector3 playerPos = this.gameObject.transform.position;
+        Vector3 spawnPoint = new Vector3(playerPos.x, playerPos.y + 0.5f, playerPos.z);
+        donut.GetComponent<DropDonutScript>().Drop(donutDuration, spawnPoint);
     }
 
 
@@ -160,19 +169,17 @@ public class PowerupCollector : MonoBehaviour
     }
 
     //setters for when user clicks 1,2,3 on keyboard
-    public void SetHasDonut(bool v) {
-        hasDonut = v;
-        usedDonut = !v;
+    public void UseDonut() {
+        usedDonut = true;
+        hasDonut = false;
     }
 
-    public void SetHasWhiteClaw(bool v) {
-        hasWhiteClaw = v;
-        usedWhiteClaw = !v;
+    public void UseWhiteClaw() {
+        usedWhiteClaw = true;
     }
 
-    public void SetHasLatte(bool v) {
-        hasLatte = v;
-        usedLatte = !v;
+    public void UseLatte() {
+        usedLatte = true;
     }
 
     //public functions for bone bar script to use

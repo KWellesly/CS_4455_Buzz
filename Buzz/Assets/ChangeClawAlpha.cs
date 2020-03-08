@@ -9,6 +9,7 @@ public class ChangeClawAlpha : MonoBehaviour
     Image image;
     Color c;
     public PowerupCollector player;
+    private bool active = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,16 +24,17 @@ public class ChangeClawAlpha : MonoBehaviour
     {
 
     	//checks if player has collected a donut - this will be done in the player script (by ben)
-    	if (player.HasWhiteClaw()) {
+    	if (!active && player.HasWhiteClaw()) {
     		c.a = 1f;
     		image.color = c;
+            active = true;
     	}
 
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        if (active && Input.GetKeyDown(KeyCode.Alpha2)) {
         	c.a = 0.33f;
         	image.color = c;
-        	player.SetHasWhiteClaw(false);
-    		
+        	player.UseWhiteClaw();
+            active = false;
     	}
     }
 }
