@@ -12,6 +12,7 @@ public class PowerupCollector : MonoBehaviour
     public float latteDuration;
 
     public bool hasDonut;
+    public float donutDuration;
 
     public bool hasWhiteClaw;
     public float whiteClawSpeedPenalty=2f;
@@ -139,7 +140,12 @@ public class PowerupCollector : MonoBehaviour
 
     public void DropDonut()
     {
-        hasDonut = false;
+        usedDonut = hasDonut = false;
+        GameObject donut = Instantiate(Resources.Load("Dropped Donut")) as GameObject;
+
+        Vector3 playerPos = this.gameObject.transform.position;
+        Vector3 spawnPoint = new Vector3(playerPos.x, playerPos.y + 0.5f, playerPos.z);
+        donut.GetComponent<DropDonutScript>().Drop(donutDuration, spawnPoint);
     }
 
 
@@ -165,6 +171,7 @@ public class PowerupCollector : MonoBehaviour
     //setters for when user clicks 1,2,3 on keyboard
     public void UseDonut() {
         usedDonut = true;
+        hasDonut = false;
     }
 
     public void UseWhiteClaw() {

@@ -31,9 +31,29 @@ public class policeController : MonoBehaviour
         //Implement donut chase lofic here maybe?
         Vector3 distVec = buzz.transform.position - tr.position;
         float dist = distVec.magnitude;
+
+        // start with default values and override if donut in view
+        float minDist = float.MaxValue;
+        Vector3 minDistPos = agent.transform.position;
         if (dist < 15)
         {
-            agent.SetDestination(buzz.transform.position);
+            GameObject[] droppedDonuts = GameObject.FindGameObjectsWithTag("DroppedDonut");
+            foreach (GameObject donut in droppedDonuts)
+            {
+                float donutDist = (donut.transform.position - tr.position).magnitude;
+                if (donutDist < 15 && donutDist < minDist) {
+                    minDist = donutDist;
+                    minDistPos = donut.transform.position;
+                }
+            }
+            if (minDist.Equals(float.MaxValue))
+            {
+                agent.SetDestination(buzz.transform.position);
+            } else
+            {
+                agent.SetDestination(minDistPos);
+            }
+            
             //print("BUZZ!!!!!!!!");
         }
         anim.SetFloat("VelY", agent.velocity.magnitude);
