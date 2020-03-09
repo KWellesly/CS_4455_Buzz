@@ -4800,6 +4800,11 @@ PrefabInstance:
       propertyPath: drinkWhiteClaw
       value: 
       objectReference: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
+    - target: {fileID: 1364981744178030001, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: slapNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 03b07af353f4c014199669e1dc9acccd, type: 3}
     - target: {fileID: 2250889323600249008, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
       propertyPath: m_IsTrigger
@@ -4820,6 +4825,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Buzz_Root_Motion
       objectReference: {fileID: 0}
+    - target: {fileID: 2250889323600249015, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: slapNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 03b07af353f4c014199669e1dc9acccd, type: 3}
     - target: {fileID: 2250889323600249021, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -1156,7 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRagdoll: 0
   MaxSpeed: 1
-  cam: {fileID: 0}
+  slapNoise: {fileID: 8300000, guid: 03b07af353f4c014199669e1dc9acccd, type: 3}
   agent: {fileID: 3333009416081880054}
   waypoints: []
 --- !u!195 &3333009416081880054

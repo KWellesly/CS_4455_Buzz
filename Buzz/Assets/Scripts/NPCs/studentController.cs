@@ -8,6 +8,7 @@ public class studentController : MonoBehaviour
     public bool isRagdoll;
     private Animator anim;
     public float MaxSpeed = 1;
+    public AudioClip slapNoise;
 
     public NavMeshAgent agent;
 
@@ -82,5 +83,14 @@ public class studentController : MonoBehaviour
         //currWaypoint = (currWaypoint + 1) % waypoints.Length;
         currWaypoint = (int) Random.Range(0, waypoints.Length);
         agent.SetDestination(waypoints[currWaypoint].transform.position);
+    }
+    public void setRagdoll()
+    {
+        if(isRagdoll)
+        {
+            return;
+        }
+        isRagdoll = true;
+        AudioSource.PlayClipAtPoint(slapNoise, this.gameObject.transform.position);
     }
 }
