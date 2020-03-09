@@ -4775,6 +4775,31 @@ PrefabInstance:
       propertyPath: donutDuration
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: pickupPowerUp
+      value: 
+      objectReference: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
+    - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: pickupBone
+      value: 
+      objectReference: {fileID: 8300000, guid: 7478151cf36724a7dada558f746c3633, type: 3}
+    - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: throwDonut
+      value: 
+      objectReference: {fileID: 8300000, guid: a0010a1a0c474473b81729eb770c485f, type: 3}
+    - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: drinkLatte
+      value: 
+      objectReference: {fileID: 8300000, guid: 35fbad8cdde724f11ba6481f1e64af71, type: 3}
+    - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: drinkWhiteClaw
+      value: 
+      objectReference: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
     - target: {fileID: 2250889323600249008, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
       propertyPath: m_IsTrigger
