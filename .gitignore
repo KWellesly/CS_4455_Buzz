@@ -1,5 +1,6 @@
 Buzz/Library/*
 Buzz/Temp/*
+Buzz/Build/windows/*
 Buzz/*.sln
 Buzz/*.csproj
 
@@ -11,6 +12,7 @@ Buzz/*.csproj
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+
 
 # Crashlytics generated file
 crashlytics-build.properties
