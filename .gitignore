@@ -3,6 +3,8 @@ Buzz/Temp/*
 Buzz/Build/windows/*
 /[Bb]uild/
 /[Bb]uilds/
+Buzz/[Bb]uild/
+Buzz/[Bb]uilds/
 Buzz/[Oo]bj/
 Buzz/*.sln
 Buzz/*.csproj
