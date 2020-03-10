@@ -4,7 +4,7 @@ You must explore the area to find a way out before it's too late! Careful, becau
 
 CONTROLS  
 - Use the arrow keys or wasd keys to move your character
-- Left shift - Run 
+- Hold Left shift - Run 
 - Ctrl or Left Click - Interact
 - 1, 2, 3 - Abilities from power ups 
 - Esc - Pause game
@@ -55,7 +55,7 @@ Precursors to Fun Gameplay:
 - More NPCs will be added to that the player is constantly on the move, to either slap students or by running from the police. We don’t want the player to be standing still or idle for most of the game, we constantly want them to be moving.
 
 3D Character with Real Time Control:
-- Buzz can be moved with standard WASD movement, you can press left shift to run.
+- Buzz can be moved with standard WASD movement, you can press and hold left shift to run.
 - Buzz comes with root motion enabled, which blends in smooth movement when transitioning from standing->walking->running
 - Slap button is mapped to “fire1”. You can Left Mouse Click or L-CTRL when in close proximity to a student to begin a slap animation.
     - Slap animations are implemented with IK, this maps Buzz’s hand to the students’ face when the animation is played
