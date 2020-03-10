@@ -6,10 +6,11 @@ public class Collectible : MonoBehaviour
 {
     public enum CollectibleType
     {
-        Donut,
+        FreshDonut,
         Latte,
         WhiteClaw,
-        BoneFragment
+        BoneFragment,
+        DroppedDonut
     }
 
     public CollectibleType type;
@@ -19,11 +20,11 @@ public class Collectible : MonoBehaviour
         if (c.attachedRigidbody != null)
         {
             PowerupCollector collector = c.attachedRigidbody.gameObject.GetComponent<PowerupCollector>();
-            if (collector != null)
+            if (collector != null && !type.Equals(CollectibleType.DroppedDonut))
             {
                 switch (type)
                 {
-                    case CollectibleType.Donut:
+                    case CollectibleType.FreshDonut:
                         collector.ReceiveDonut();
                         break;
                     case CollectibleType.Latte:

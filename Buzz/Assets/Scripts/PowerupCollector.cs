@@ -6,16 +6,17 @@ using UnityEngine;
 public class PowerupCollector : MonoBehaviour
 {
 
-    public bool hasLatte;
-    public float latteSpeedMultiplier=2;
-    public bool startExpireLatte;
+    private bool hasLatte;
+    public float latteSpeedMultiplier=2f;
+    private bool startExpireLatte;
     public float latteDuration;
 
-    public bool hasDonut;
+    private bool hasDonut;
+    public float donutDuration;
 
-    public bool hasWhiteClaw;
-    public float whiteClawSpeedPenalty=2;
-    public bool startExpireWhiteClaw;
+    private bool hasWhiteClaw;
+    public float whiteClawSpeedPenalty=2f;
+    private bool startExpireWhiteClaw;
     public float whiteClawDuration;
 
     private float startLatteTime;
@@ -23,15 +24,21 @@ public class PowerupCollector : MonoBehaviour
 
     private BuzzRootMotion motion;
 
-    //ally's
-    public bool usedLatte;
-    public bool usedDonut;
-    public bool usedWhiteClaw;
+    private bool usedLatte;
+    private bool usedDonut;
+    private bool usedWhiteClaw;
 
     //ally's bonebar
     public BoneBar boneBar;
     public int maxBoneCount = 10;
     public int numBoneFragments = 0;
+
+    // sounds
+    public AudioClip pickupPowerUp;
+    public AudioClip pickupBone;
+    public AudioClip throwDonut;
+    public AudioClip drinkLatte;
+    public AudioClip drinkWhiteClaw;
 
     // Start is called before the first frame update
     void Start()
@@ -49,14 +56,15 @@ public class PowerupCollector : MonoBehaviour
         motion = GetComponent<BuzzRootMotion>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         boneBar.SetBoneCount(numBoneFragments);
-    }
 
-    void FixedUpdate()
-    {
+        if (usedDonut)
+        {
+            DropDonut();
+        }
+
         if (usedLatte)
         {
             if (!startExpireLatte)
@@ -91,6 +99,7 @@ public class PowerupCollector : MonoBehaviour
     public void ReceiveLatte()
     {
         hasLatte = true;
+        AudioSource.PlayClipAtPoint(pickupPowerUp, this.gameObject.transform.position);
     }
 
     public void InitLatteSpeedup(float factor)
@@ -100,17 +109,20 @@ public class PowerupCollector : MonoBehaviour
         motion.turnMaxSpeed *= factor;
         startLatteTime = Time.time;
         startExpireLatte = true;
+        hasLatte = false;
+        AudioSource.PlayClipAtPoint(drinkLatte, this.gameObject.transform.position);
     }
     public void ExpireLatte(float factor)
     {
         motion.rootMovementSpeed /= factor;
         motion.turnMaxSpeed /= factor;
-        hasLatte = startExpireLatte = false;
+        startExpireLatte = usedLatte = false;
     }
 
     public void ReceiveWhiteClaw()
     {
         hasWhiteClaw = true;
+        AudioSource.PlayClipAtPoint(pickupPowerUp, this.gameObject.transform.position);
     }
 
     public void InitWhiteClawSlowdown(float factor)
@@ -119,30 +131,40 @@ public class PowerupCollector : MonoBehaviour
         motion.turnMaxSpeed /= factor;
         startWhiteClawTime = Time.time;
         startExpireWhiteClaw = true;
+        hasWhiteClaw = false;
+        AudioSource.PlayClipAtPoint(drinkWhiteClaw, this.gameObject.transform.position);
     }
 
     public void ExpireWhiteClaw(float factor)
     {
         motion.rootMovementSpeed *= factor;
         motion.turnMaxSpeed *= factor;
-        hasWhiteClaw = startExpireWhiteClaw = false;
+        startExpireWhiteClaw = usedWhiteClaw = false;
     }
 
 
     public void ReceiveDonut()
     {
         hasDonut = true;
+        AudioSource.PlayClipAtPoint(pickupPowerUp, this.gameObject.transform.position);
     }
 
-    public void ExpireDonut()
+    public void DropDonut()
     {
-        hasDonut = false;
+        usedDonut = hasDonut = false;
+        GameObject donut = Instantiate(Resources.Load("Dropped Donut")) as GameObject;
+
+        Vector3 playerPos = this.gameObject.transform.position;
+        Vector3 spawnPoint = new Vector3(playerPos.x, playerPos.y + 0.5f, playerPos.z);
+        donut.GetComponent<DropDonutScript>().Drop(donutDuration, spawnPoint);
+        AudioSource.PlayClipAtPoint(throwDonut, this.gameObject.transform.position);
     }
 
 
     public void ReceiveBoneFragment()
     {
         numBoneFragments++;
+        AudioSource.PlayClipAtPoint(pickupBone, this.gameObject.transform.position);
     }
 
 
@@ -160,19 +182,17 @@ public class PowerupCollector : MonoBehaviour
     }
 
     //setters for when user clicks 1,2,3 on keyboard
-    public void SetHasDonut(bool v) {
-        hasDonut = v;
-        usedDonut = !v;
+    public void UseDonut() {
+        usedDonut = true;
+        hasDonut = false;
     }
 
-    public void SetHasWhiteClaw(bool v) {
-        hasWhiteClaw = v;
-        usedWhiteClaw = !v;
+    public void UseWhiteClaw() {
+        usedWhiteClaw = true;
     }
 
-    public void SetHasLatte(bool v) {
-        hasLatte = v;
-        usedLatte = !v;
+    public void UseLatte() {
+        usedLatte = true;
     }
 
     //public functions for bone bar script to use

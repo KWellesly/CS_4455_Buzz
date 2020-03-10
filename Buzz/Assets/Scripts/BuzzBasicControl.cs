@@ -17,6 +17,7 @@ public class BuzzBasicControl : MonoBehaviour
     public float forwardMaxSpeed = 2f;
     public float turnMaxSpeed = 40f;
 
+
     // Jump
     public float jumpableGroundNormalMaxAngle = 45f;
     public bool closeToJumpableGround;

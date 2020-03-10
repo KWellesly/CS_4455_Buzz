@@ -110,7 +110,7 @@ public class SlapperScript : MonoBehaviour
                     // TODO: Ragdolling 
 
                     studentController sc = targetStudent.gameObject.GetComponent<studentController>();
-                    sc.isRagdoll = true;
+                    sc.setRagdoll();
                 }
             }
             else

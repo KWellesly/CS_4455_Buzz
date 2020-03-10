@@ -9,6 +9,7 @@ public class ChangeDonutAlpha : MonoBehaviour
     Image image;
     Color c;
     public PowerupCollector player;
+    private bool active;
 
     // Start is called before the first frame update
     void Start()
@@ -23,16 +24,17 @@ public class ChangeDonutAlpha : MonoBehaviour
     {
 
     	//checks if player has collected item - this will be done in the player script (by ben)
-    	if (player.HasDonut()) {
+    	if (!active && player.HasDonut()) {
     		c.a = 1f;
     		image.color = c;
+            active = true;
     	}
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        if (active && Input.GetKeyDown(KeyCode.Alpha1)) {
         	c.a = 0.33f;
         	image.color = c;
-        	player.SetHasDonut(false);
-    		
+        	player.UseDonut();
+            active = false;
     	}
     }
 }

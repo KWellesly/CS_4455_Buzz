@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Collectible
   - Police
+  - DroppedDonut
   layers:
   - Default
   - TransparentFX
