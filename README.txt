@@ -58,16 +58,16 @@ Precursors to Fun Gameplay:
 - Buzz can be moved with standard WASD movement, you can press left shift to run.
 - Buzz comes with root motion enabled, which blends in smooth movement when transitioning from standing->walking->running
 - Slap button is mapped to “fire1”. You can Left Mouse Click or L-CTRL when in close proximity to a student to begin a slap animation.
-- Slap animations are implemented with IK, this maps Buzz’s hand to the students’ face when the animation is played
-- Slap animations are accompanied by a slap noise, for now we have a “whoosh” sound for the hand when the animation plays to slap a student
+    - Slap animations are implemented with IK, this maps Buzz’s hand to the students’ face when the animation is played
+    - Slap animations are accompanied by a slap noise, for now we have a “whoosh” sound for the hand when the animation plays to slap a student
 - Turning speed of Buzz was adjusted to make turning feel more responsive, although movement overall might need some adjustment and polishing for the final version of the game.
 
 3D World with Physical and Spatial Simulation:
 - Custom built level design using 3rd party assets to generate a student campus-like feel
 - Environmental physical interactions in the form of power ups located throughout campus that can be obtained as items from ragdolled students.
-- Donut: power up that can be dropped by the user that will cause the police to chase the donut instead of Buzz
-- White Claw: power up that will slow Buzz down
-- Latte: power up that speeds up movement speed as a result of caffeine.
+    - Donut: power up that can be dropped by the user that will cause the police to chase the donut instead of Buzz
+    - White Claw: power up that will slow Buzz down
+    - Latte: power up that speeds up movement speed as a result of caffeine.
 - There are audio cues and stimulus to help reinforce the physical interaction when power ups and bone fragments are picked up. Likewise, we have implemented auditory features when Buzz ragdolls a student to help drive home physical interactions
 - Inverse kinematics is used to align Buzz’s punching animation with the head of the student he is about to ragdoll to aid with the spatial simulation and physical interactions of the game
 - Consistent running speed tied to framerate
@@ -75,6 +75,7 @@ Precursors to Fun Gameplay:
 Real Time NPC Steering/AI:
 - Student NPCs (green) path find to various path nodes on the map. There are more waypoints near popular campus locations to drive home the feel of a campus environment. They select waypoints randomly in their waypoint array and will move from waypoint to waypoint. Some feedback we received and will plan on implementing include having students avoid areas in which buzz is seen slapping a student. To do this, we plan on having certain path nodes turn off when buzz is seen attacking another student. Students will have a chance to drop bones and power ups upon being slapped for the player to pick up and use.
 - Police NPCs (red) currently stand still and will find a path to buzz if he gets too near. Police will prioritize donuts over buzz
+
 Polish:
 - UI
     - The game contains a start menu on load, where you may start/exit the game.
