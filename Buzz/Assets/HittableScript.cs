@@ -47,7 +47,6 @@ public class HittableScript : MonoBehaviour
         {
             isSlappable = false;
         }
-
         //anim.SetBool("isHungry", isHungry);
     }
 }
