@@ -44,4 +44,9 @@ public class Collectible : MonoBehaviour
         }
 
     }
+
+    public void Drop(Vector3 spawnPoint)
+    {
+        this.gameObject.transform.position = spawnPoint;
+    }
 }
