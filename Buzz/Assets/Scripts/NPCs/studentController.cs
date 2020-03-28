@@ -91,6 +91,64 @@ public class studentController : MonoBehaviour
             return;
         }
         isRagdoll = true;
+        DropPowerUp();
         AudioSource.PlayClipAtPoint(slapNoise, this.gameObject.transform.position);
+    }
+
+    private int getRandomPowerUpValue()
+    {
+        float rand = Random.value;
+        if (rand <= .05f)
+        {
+            return 0;
+        }
+        else if (rand > .05f && rand <= .20f)
+        {
+            return 1;
+        }
+        else if (rand > .20f && rand <= .35f)
+        {
+            return 2;
+        } 
+        else if (rand > .35f && rand <= .50f)
+        {
+            return 3;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    public void DropPowerUp()
+    {
+        int typeOfPowerUp = getRandomPowerUpValue();
+        GameObject droppedPowerUp = null;
+
+        switch(typeOfPowerUp)
+        {
+            case 0:
+                droppedPowerUp = Instantiate(Resources.Load("Donut")) as GameObject;
+                break;
+            case 1:
+                droppedPowerUp = Instantiate(Resources.Load("Latte")) as GameObject;
+                break;
+            case 2:
+                droppedPowerUp = Instantiate(Resources.Load("WhiteClaw")) as GameObject;
+                break;
+            case 3:
+                droppedPowerUp = Instantiate(Resources.Load("Bone Fragment")) as GameObject;
+                break;
+            default:
+                // return no item
+                return;
+        }
+
+        Vector3 studentPos = this.gameObject.transform.position;
+        Vector3 spawnPoint = new Vector3(studentPos.x, studentPos.y + 0.5f, studentPos.z);
+        if (droppedPowerUp != null)
+        {
+            droppedPowerUp.GetComponent<Collectible>().Drop(spawnPoint);
+        }
     }
 }
