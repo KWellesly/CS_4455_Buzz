@@ -15,6 +15,8 @@ public class studentController : MonoBehaviour
     // for student waypoints
     public GameObject[] waypoints;
     private int currWaypoint; 
+    Vector3 nextSpawnPosition;
+    public GameObject studentPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +84,7 @@ public class studentController : MonoBehaviour
     {
         //currWaypoint = (currWaypoint + 1) % waypoints.Length;
         currWaypoint = (int) Random.Range(0, waypoints.Length);
+        nextSpawnPosition = waypoints[currWaypoint].transform.position; // use this for the next spawn point if the current student gets slapped
         agent.SetDestination(waypoints[currWaypoint].transform.position);
     }
     public void setRagdoll()
@@ -93,6 +96,15 @@ public class studentController : MonoBehaviour
         isRagdoll = true;
         DropPowerUp();
         AudioSource.PlayClipAtPoint(slapNoise, this.gameObject.transform.position);
+        spawnNewStudent();
+    }
+    private void spawnNewStudent()
+    {
+        GameObject newStudent = (GameObject) Instantiate(studentPrefab, nextSpawnPosition, Quaternion.identity);
+        //below code if a proof of concept for student spawning, uncommment it to play with it
+        //it just spawns a new student on top of the one you slapped
+        //Transform position = GetComponent<Transform>();
+        //GameObject newStudent = (GameObject) Instantiate(studentPrefab, position.position, Quaternion.identity);
     }
 
     private int getRandomPowerUpValue()
