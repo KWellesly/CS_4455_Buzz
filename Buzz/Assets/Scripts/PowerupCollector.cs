@@ -203,6 +203,11 @@ public class PowerupCollector : MonoBehaviour
     public int GetMaxBoneCount() {
         return maxBoneCount;
     }
+
+    public void SetNumBoneFrag(int num) {
+        numBoneFragments = num;
+    }
+    
     public bool DidBuzzCompleteABone()
     {
         return maxBoneCount == numBoneFragments;
