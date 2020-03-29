@@ -87,7 +87,7 @@ public class studentController : MonoBehaviour
         nextSpawnPosition = waypoints[currWaypoint].transform.position; // use this for the next spawn point if the current student gets slapped
         agent.SetDestination(waypoints[currWaypoint].transform.position);
     }
-    public void setRagdoll()
+    public void setRagdoll(SlapperScript sc)
     {
         if(isRagdoll)
         {
@@ -97,6 +97,7 @@ public class studentController : MonoBehaviour
         DropPowerUp();
         AudioSource.PlayClipAtPoint(slapNoise, this.gameObject.transform.position);
         spawnNewStudent();
+        sc.inceaseWantedLevel();
     }
     private void spawnNewStudent()
     {
@@ -162,5 +163,9 @@ public class studentController : MonoBehaviour
         {
             droppedPowerUp.GetComponent<Collectible>().Drop(spawnPoint);
         }
+    }
+    public GameObject[] getWaypoints()
+    {
+        return waypoints;
     }
 }

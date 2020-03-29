@@ -33,7 +33,7 @@ public class policeController : MonoBehaviour
         buzzCompletedBone = pc.DidBuzzCompleteABone();
 
         SlapperScript ss = buzz.gameObject.GetComponent<SlapperScript>();
-        detectionDist = 5 * ss.getWantedLevel();
+        detectionDist = 3 * ss.getWantedLevel();
         //I used distance btwn buzz and the cop, if buzz is close enough, pathfind to him
         //Implement donut chase lofic here maybe?
         Vector3 distVec = buzz.transform.position - tr.position;

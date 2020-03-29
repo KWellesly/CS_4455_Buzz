@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class SlapperScript : MonoBehaviour
 {
+    //This script also acts as the wanted level manager
     public Animator anim;
     public bool isSlappable = false;
     public GameObject target;
@@ -15,6 +16,9 @@ public class SlapperScript : MonoBehaviour
     public bool match = false; 
     private Collider targetStudent;
     private int wantedLevel;
+    public GameObject policePrefab;
+    private GameObject[] mapWaypoints;
+    public GameObject buzz;
 
     void Awake()
     {
@@ -111,8 +115,7 @@ public class SlapperScript : MonoBehaviour
                     // TODO: Ragdolling 
 
                     studentController sc = targetStudent.gameObject.GetComponent<studentController>();
-                    sc.setRagdoll();
-                    wantedLevel++;
+                    sc.setRagdoll(this);
                 }
             }
             else
@@ -125,5 +128,24 @@ public class SlapperScript : MonoBehaviour
     public int getWantedLevel()
     {
         return wantedLevel;
+    }
+    public void inceaseWantedLevel()
+    {
+        wantedLevel++;
+        if (mapWaypoints == null)
+        {
+            GameObject student = GameObject.Find("student"); 
+            studentController sc = targetStudent.gameObject.GetComponent<studentController>();
+            mapWaypoints = sc.getWaypoints();
+        }
+        int randomIndex = (int) Random.Range(0, mapWaypoints.Length);
+        GameObject newPolice = (GameObject) Instantiate(policePrefab, mapWaypoints[randomIndex].transform.position, Quaternion.identity);
+        policeController pc = newPolice.gameObject.GetComponent<policeController>();
+        pc.buzz = buzz;
+        //proof pf concept code, spawns police at the first waypoint so you can find them easier
+        //GameObject prPolice = (GameObject) Instantiate(policePrefab, mapWaypoints[0].transform.position, Quaternion.identity);
+        //policeController pc1 = prPolice.gameObject.GetComponent<policeController>();
+        //pc1.buzz = buzz;
+
     }
 }
