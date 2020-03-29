@@ -203,4 +203,8 @@ public class PowerupCollector : MonoBehaviour
     public int GetMaxBoneCount() {
         return maxBoneCount;
     }
+    public bool DidBuzzCompleteABone()
+    {
+        return maxBoneCount == numBoneFragments;
+    }
 }

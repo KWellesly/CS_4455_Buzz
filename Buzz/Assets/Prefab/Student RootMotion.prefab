@@ -1199,6 +1199,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  studentPrefab: {fileID: 3333009416081880055}
 --- !u!195 &3333009416081880054
 NavMeshAgent:
   m_ObjectHideFlags: 0
