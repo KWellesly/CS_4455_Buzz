@@ -14,6 +14,7 @@ public class SlapperScript : MonoBehaviour
 
     public bool match = false; 
     private Collider targetStudent;
+    private int wantedLevel;
 
     void Awake()
     {
@@ -111,6 +112,7 @@ public class SlapperScript : MonoBehaviour
 
                     studentController sc = targetStudent.gameObject.GetComponent<studentController>();
                     sc.setRagdoll();
+                    wantedLevel++;
                 }
             }
             else
@@ -119,5 +121,9 @@ public class SlapperScript : MonoBehaviour
                 anim.SetLookAtWeight(0);
             }
         }
+    }
+    public int getWantedLevel()
+    {
+        return wantedLevel;
     }
 }
