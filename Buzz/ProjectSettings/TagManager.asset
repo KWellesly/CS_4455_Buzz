@@ -8,6 +8,7 @@ TagManager:
   - Collectible
   - Police
   - DroppedDonut
+  - VendingUI
   layers:
   - Default
   - TransparentFX
