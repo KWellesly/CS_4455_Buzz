@@ -177,6 +177,11 @@ public class PowerupCollector : MonoBehaviour
         return hasWhiteClaw;
     }
 
+    public bool IsWhiteClawActive()
+    {
+        return startExpireWhiteClaw;
+    }
+
     public bool HasLatte() {
         return hasLatte;
     }

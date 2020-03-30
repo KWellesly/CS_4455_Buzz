@@ -15775,7 +15775,7 @@ PrefabInstance:
     - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
       propertyPath: whiteClawDuration
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -1517701156257588914, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
