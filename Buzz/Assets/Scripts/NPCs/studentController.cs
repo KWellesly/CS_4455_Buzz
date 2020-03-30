@@ -5,12 +5,23 @@ using UnityEngine.AI;
 
 public class studentController : MonoBehaviour
 {
-    public bool isRagdoll;
+    public bool isRagdoll; // TODO: replace with State
     private Animator anim;
     public float MaxSpeed = 1;
     public AudioClip slapNoise;
 
+    public enum StudentState
+    {
+        ChaseBuzz,
+        Wander,
+        RunAway,
+        Ragdoll
+    }
+    private StudentState currentState;
+
     public NavMeshAgent agent;
+    public GameObject buzz;
+    public float whiteClawActivationDistance;
 
     // for student waypoints
     public GameObject[] waypoints;
@@ -27,13 +38,17 @@ public class studentController : MonoBehaviour
 
         currWaypoint = -1;
         setNextWaypoint();
-        
+
+        whiteClawActivationDistance = 30;
+        buzz = GameObject.Find("Buzz_Root_Motion");
+
+        currentState = StudentState.Wander;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isRagdoll)
+        if (isRagdoll) // TODO: replace with state
 		{
 			SetKinematic(false);
 			GetComponent<Animator>().enabled=false;
@@ -48,12 +63,27 @@ public class studentController : MonoBehaviour
         }
 
         //keep this duplaicate code here, idk if it will break the animator on ragdoll -Eric :D
-        if (isRagdoll)
+        // mmm spaghetti... 
+        if (isRagdoll) // TODO: replace with state
 		{
 			SetKinematic(false);
 			GetComponent<Animator>().enabled=false;
 		}
-        if (agent.remainingDistance == 0 && !agent.pathPending)
+
+        float distFromBuzz = float.MaxValue;
+        bool whiteClawIsActive = false;
+
+        if (buzz != null)
+        {
+            distFromBuzz = (buzz.transform.position - this.gameObject.transform.position).magnitude;
+            whiteClawIsActive = buzz.GetComponent<PowerupCollector>().IsWhiteClawActive();
+        }
+
+        if (whiteClawIsActive && distFromBuzz < whiteClawActivationDistance)
+        {
+            ChaseBuzz();
+        }
+        else if ((currentState == StudentState.ChaseBuzz && !whiteClawIsActive) || (agent.remainingDistance == 0 && !agent.pathPending))
         {
             setNextWaypoint();
         }
@@ -61,7 +91,7 @@ public class studentController : MonoBehaviour
 
         anim.SetFloat("VelY", agent.velocity.magnitude);
     }
-    void move(float x, float y)
+    void forceMove(float x, float y)
     {
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
@@ -81,12 +111,14 @@ public class studentController : MonoBehaviour
 	}
 
     // overloaded method, in case we want to supply a next waypoint for when students run away
+    // Ben: Maybe lets rename this method to not be confusing with the original setNextWayPoint
     public void setNextWaypoint(Vector3 next_pos)
     {
-        MaxSpeed = 10;
+        MaxSpeed = 5;
         nextSpawnPosition = next_pos; // use this for the next spawn point if the current student gets slapped
         agent.SetDestination(next_pos);
         agent.speed = MaxSpeed;
+        currentState = StudentState.RunAway;
     }
 
     public void setNextWaypoint()
@@ -97,15 +129,24 @@ public class studentController : MonoBehaviour
         nextSpawnPosition = waypoints[currWaypoint].transform.position; // use this for the next spawn point if the current student gets slapped
         agent.SetDestination(waypoints[currWaypoint].transform.position);
         agent.speed = MaxSpeed;
+        currentState = StudentState.Wander;
+    }
+
+    public void ChaseBuzz()
+    {
+        MaxSpeed = 3;
+        agent.SetDestination(buzz.transform.position + new Vector3(1, 1, 0));
+        currentState = StudentState.ChaseBuzz;
     }
 
     public void setRagdoll(SlapperScript sc)
     {
-        if(isRagdoll)
+        if(isRagdoll) // TODO: replace with state check
         {
             return;
         }
-        isRagdoll = true;
+        isRagdoll = true; // TODO: remove once verified is not needed
+        currentState = StudentState.Ragdoll;
         DropPowerUp();
         AudioSource.PlayClipAtPoint(slapNoise, this.gameObject.transform.position);
         spawnNewStudent();
