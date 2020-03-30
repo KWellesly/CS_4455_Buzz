@@ -60,11 +60,31 @@ public class policeController : MonoBehaviour
             {
                 agent.SetDestination(minDistPos);
             }
+            agent.speed = 3;
             
             //print("BUZZ!!!!!!!!");
+        } else
+        {
+            // police will randomly wander if they have nothing to do
+            if (agent.remainingDistance == 0 && !agent.pathPending)
+            {
+                // wander around slowly. walking animation here?
+                Vector3 wander_position = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)) + agent.GetComponentInParent<Transform>().position;
+                agent.SetDestination(wander_position);
+                MaxSpeed = 1;
+                agent.speed = MaxSpeed;
+            }
+                
         }
         anim.SetFloat("VelY", agent.velocity.magnitude);
     }
+
+    public void pathTowardsSlappedStudent(Vector3 slapped_pos)
+    {
+        Vector3 search_area = new Vector3(Random.Range(-10.0f, 10.0f), 0, Random.Range(-10.0f, 10.0f)) + slapped_pos;
+        agent.SetDestination(search_area);
+    }
+
     void OnTriggerEnter(Collider x)
     {
         //print("Collided" + x.gameObject.tag);

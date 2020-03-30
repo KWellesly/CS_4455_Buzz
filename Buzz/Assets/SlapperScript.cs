@@ -116,6 +116,11 @@ public class SlapperScript : MonoBehaviour
 
                     studentController sc = targetStudent.gameObject.GetComponent<studentController>();
                     sc.setRagdoll(this);
+
+                    // get position of slapped student
+                    fleeFromSlappedStudent(target.transform.position);
+                    policeSearchRadius(target.transform.position);
+
                 }
             }
             else
@@ -125,6 +130,43 @@ public class SlapperScript : MonoBehaviour
             }
         }
     }
+
+    void policeSearchRadius(Vector3 slapped_position)
+    {
+        int layerid = 13;
+        int layermask = 1 << layerid;
+        int vicinity_radius = 75;
+        
+
+        Collider[] hitColliders = Physics.OverlapSphere(slapped_position, vicinity_radius, layermask);
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            hitColliders[i].GetComponentInParent<policeController>().pathTowardsSlappedStudent(slapped_position);
+        }
+    }
+
+    // cause other students in the vicinity to flee from the area
+    void fleeFromSlappedStudent(Vector3 slapped_position)
+    {
+        int fear_radius = 50;
+        // first find all students in vicinity
+        int layerid = 11;
+        int layermask = 1 << layerid;
+
+        Collider[] hitColliders = Physics.OverlapSphere(slapped_position, fear_radius, layermask);
+        for (int i = 0; i < hitColliders.Length; i++)
+        {
+            if (hitColliders[i].GetComponentInParent<studentController>())
+            {
+                // get vector of student to slapped_position, reverse it for their new path for a certain distance
+                Vector3 student_pos = hitColliders[i].GetComponentInParent<Transform>().position;
+                Vector3 away_slap_center = (student_pos - slapped_position).normalized;
+                hitColliders[i].GetComponentInParent<studentController>().setNextWaypoint(student_pos + away_slap_center * fear_radius);
+
+            }
+        }
+    }
+
     public int getWantedLevel()
     {
         return wantedLevel;

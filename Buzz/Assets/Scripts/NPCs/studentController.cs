@@ -80,13 +80,25 @@ public class studentController : MonoBehaviour
 		}
 	}
 
-    void setNextWaypoint()
+    // overloaded method, in case we want to supply a next waypoint for when students run away
+    public void setNextWaypoint(Vector3 next_pos)
     {
+        MaxSpeed = 10;
+        nextSpawnPosition = next_pos; // use this for the next spawn point if the current student gets slapped
+        agent.SetDestination(next_pos);
+        agent.speed = MaxSpeed;
+    }
+
+    public void setNextWaypoint()
+    {
+        MaxSpeed = 1;
         //currWaypoint = (currWaypoint + 1) % waypoints.Length;
-        currWaypoint = (int) Random.Range(0, waypoints.Length);
+        currWaypoint = (int)Random.Range(0, waypoints.Length);
         nextSpawnPosition = waypoints[currWaypoint].transform.position; // use this for the next spawn point if the current student gets slapped
         agent.SetDestination(waypoints[currWaypoint].transform.position);
+        agent.speed = MaxSpeed;
     }
+
     public void setRagdoll(SlapperScript sc)
     {
         if(isRagdoll)
