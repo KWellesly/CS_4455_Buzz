@@ -17,9 +17,18 @@ public class DropDonutScript : MonoBehaviour
 
     }
 
-    public void Drop(float duration, Vector3 spawnPoint)
+    public void Drop(float duration, Vector3 spawnPoint, Rigidbody donutRb, Transform handHold)
     {
-        this.gameObject.transform.position = spawnPoint;
+        //Rigidbody player = this.GetComponent<GameObject>().GetComponent<Rigidbody>();
+        /*
+        donutRb.transform.position = spawnPoint;
+        donutRb.isKinematic = false;
+        donutRb.velocity = Vector3.zero;
+        donutRb.angularVelocity = Vector3.zero; // for unity gravity bug 
+        donutRb.AddForce(this.transform.forward * 5, ForceMode.VelocityChange);
+        */
+
+        donutRb.transform.position = spawnPoint; 
         Destroy(this.gameObject, duration);
     }
 }

@@ -19,6 +19,8 @@ public class BuzzRootMotion : MonoBehaviour
     public float rootTurnSpeed = 30f;
     public float turnMaxSpeed = 80f;
 
+    public float exitMatchTargetsAnimTime = 0.75f;
+
     // Jump
     public float jumpableGroundNormalMaxAngle = 45f;
     public bool closeToJumpableGround;

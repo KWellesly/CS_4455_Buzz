@@ -15807,6 +15807,11 @@ PrefabInstance:
       propertyPath: drinkWhiteClaw
       value: 
       objectReference: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
+    - target: {fileID: 1068260316811248539, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1364981744178030001, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
       propertyPath: slapNoise
@@ -15906,6 +15911,21 @@ PrefabInstance:
     - target: {fileID: 2250889323600249021, guid: 426e1be32ff5be14a9ea9978919f607a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250889325149519894, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250889325591861103, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537544033478099394, guid: 426e1be32ff5be14a9ea9978919f607a,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

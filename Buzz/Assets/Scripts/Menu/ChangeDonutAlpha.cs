@@ -30,7 +30,7 @@ public class ChangeDonutAlpha : MonoBehaviour
             active = true;
     	}
 
-        if (active && Input.GetKeyDown(KeyCode.Alpha1)) {
+        if (active && Input.GetKeyDown(KeyCode.Alpha1)) { 
         	c.a = 0.33f;
         	image.color = c;
         	player.UseDonut();
