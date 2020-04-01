@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BuzzRootMotion))]
+[RequireComponent(typeof(BuzzRootMotion), typeof(Animator), typeof(Rigidbody))]
 public class PowerupCollector : MonoBehaviour
 {
 
@@ -27,13 +27,17 @@ public class PowerupCollector : MonoBehaviour
     private bool usedLatte;
     private bool usedDonut;
     private bool usedWhiteClaw;
+    
+    // For throwing
+    private Transform handHold;
+    public Animator anim;
 
-    //ally's bonebar
+    // Bonebar
     public BoneBar boneBar;
     public int maxBoneCount = 10;
     public int numBoneFragments = 0;
 
-    // sounds
+    // Sounds
     public AudioClip pickupPowerUp;
     public AudioClip pickupBone;
     public AudioClip throwDonut;
@@ -54,6 +58,12 @@ public class PowerupCollector : MonoBehaviour
         usedLatte = usedWhiteClaw = usedDonut = false;
         startExpireLatte = startExpireWhiteClaw = false;
         motion = GetComponent<BuzzRootMotion>();
+    }
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>();
+        handHold = this.transform.Find("DummySkeleton/root/B-hips/B-spine/B-chest/B-upperChest/B-shoulder_L/B-upper_arm_L/B-forearm_L/B-hand_L/B-palm01_L");
     }
 
     void Update()
@@ -156,10 +166,13 @@ public class PowerupCollector : MonoBehaviour
 
         Vector3 playerPos = this.gameObject.transform.position;
         Vector3 spawnPoint = new Vector3(playerPos.x, playerPos.y + 0.5f, playerPos.z);
-        donut.GetComponent<DropDonutScript>().Drop(donutDuration, spawnPoint);
+        Rigidbody donutRb = donut.GetComponent<Rigidbody>();
+        donut.GetComponent<DropDonutScript>().Drop(donutDuration, spawnPoint, donutRb, handHold);
         AudioSource.PlayClipAtPoint(throwDonut, this.gameObject.transform.position);
     }
-
+    public void FixedUpdate() {
+        //anim.SetBool("throw", hasDonut && Input.GetKeyDown(KeyCode.Alpha1));
+    }
 
     public void ReceiveBoneFragment()
     {
