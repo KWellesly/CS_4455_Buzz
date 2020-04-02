@@ -10,8 +10,8 @@ public class SlapperScript : MonoBehaviour
     public bool isSlappable = false;
     public GameObject target;
 
-    public float initalMatchTargetsAnimTime = 0f;
-    public float exitMatchTargetsAnimTime = 0f;
+    public float initalMatchTargetsAnimTime = 0.25f;
+    public float exitMatchTargetsAnimTime = 0.75f;
 
     public bool match = false; 
     private Collider targetStudent;
@@ -26,39 +26,13 @@ public class SlapperScript : MonoBehaviour
     }
 
     void Update() {
-        if (target != null && isSlappable && Input.GetButtonDown("Fire1")) {
+        Vector3 direction = target.transform.position - this.transform.position; 
+        float dotprod = Vector3.Dot(direction, this.transform.forward);
+
+        if (target != null && isSlappable && Input.GetButtonDown("Fire1") && dotprod > 0) {
             anim.SetBool("Slap", isSlappable);
             match = true; // Set for match target
         }
-
-        /*
-        if (match) {
-            Debug.Log("match");
-            var animState = anim.GetCurrentAnimatorStateInfo(0);
-            initalMatchTargetsAnimTime = animState.normalizedTime;
-            var t = target.transform;
-            anim.MatchTarget(t.position, t.rotation, AvatarTarget.Root,
-            new MatchTargetWeightMask(new Vector3(1f, 0f, 1f), 1f),
-               initalMatchTargetsAnimTime,
-               exitMatchTargetsAnimTime);
-            Quaternion targetRotation = Quaternion.LookRotation(target.transform.position - this.transform.position);
-            float str = Mathf.Min(0.75f * Time.deltaTime, 1);
-            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, targetRotation, str);
-            match = false;
-        }
-        */
-        /**
-        if (match)
-        {
-            var t = target.transform;
-            anim.MatchTarget(t.position, t.rotation, AvatarTarget.Root,
-                    new MatchTargetWeightMask(new Vector3(1f, 0f, 1f), 1f), <-- Use mask to only set rotation
-                       initalMatchTargetsAnimTime,
-                       exitMatchTargetsAnimTime);
-            match = false;
-        // 1: use the root and matchTarget code 
-        // 2: rotation with programatic (nonroot motion) 
-        }*/
     }
 
     void OnTriggerEnter(Collider c)
@@ -119,7 +93,6 @@ public class SlapperScript : MonoBehaviour
             if (astate.IsName("Slapping"))
             {
                 float weight = anim.GetFloat("SlapWeight");
-                Debug.Log(weight);
                 Transform headTransform = target.transform.Find("DummySkeleton/root/B-hips/B-spine/B-chest/B-upperChest/B-neck/B-head");
                 // Set the look target position, if one has been assigned
                 if (target != null)
