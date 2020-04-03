@@ -56,7 +56,7 @@ public class SlapperScript : MonoBehaviour
              bool isWin = pc.DidBuzzCompleteABone();
              if (isWin)
              {
-                 SceneManager.LoadScene("GameOverScene");
+                 SceneManager.LoadScene("GameWinScene");
              }
          }   
         }
