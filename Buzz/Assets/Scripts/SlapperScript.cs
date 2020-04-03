@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 public class SlapperScript : MonoBehaviour
@@ -45,6 +46,19 @@ public class SlapperScript : MonoBehaviour
                 target = c.gameObject;
             }
             isSlappable = hs != null;
+        }
+        // adding in win screen here since this file already has an OnTriggerMethod
+        if (c != null)
+        {
+         if (c.gameObject.tag == "WinGate")
+         {
+             PowerupCollector pc = GetComponent<PowerupCollector>();
+             bool isWin = pc.DidBuzzCompleteABone();
+             if (isWin)
+             {
+                 SceneManager.LoadScene("GameOverScene");
+             }
+         }   
         }
     }
 

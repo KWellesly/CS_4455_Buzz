@@ -9,6 +9,7 @@ TagManager:
   - Police
   - DroppedDonut
   - VendingUI
+  - WinGate
   layers:
   - Default
   - TransparentFX
