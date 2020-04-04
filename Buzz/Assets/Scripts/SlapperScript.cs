@@ -175,6 +175,11 @@ public class SlapperScript : MonoBehaviour
     {
         return wantedLevel;
     }
+
+    public void halfWantedLevel() {
+        wantedLevel = wantedLevel/2;
+    }
+
     public void inceaseWantedLevel()
     {
         wantedLevel++;
