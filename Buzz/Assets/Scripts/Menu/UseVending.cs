@@ -14,9 +14,11 @@ public class UseVending : MonoBehaviour
 	public CanvasGroup oneBoneCost;
 	public CanvasGroup fiveBoneCost;
 	public CanvasGroup congrats;
+	public CanvasGroup congratsWanted;
 	public CanvasGroup vendingUI;
 
 	public PowerupCollector pc;
+	public SlapperScript slapper;
 
 	CanvasGroup item;
 	int numBones;
@@ -24,11 +26,13 @@ public class UseVending : MonoBehaviour
 	private bool isDonut;
 	private bool isWhiteClaw;
 	private bool isStarbucks;
+	private bool isID;
 
 	void Update() {
 
 		numBones = pc.GetBoneCount();
 
+		//resets all panels after user exits vending
 		if(vendingUI.interactable) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				
@@ -39,6 +43,7 @@ public class UseVending : MonoBehaviour
 				SetPanelFalse(oneBoneCost);
 				SetPanelFalse(fiveBoneCost);
 				SetPanelFalse(congrats);
+				SetPanelFalse(congratsWanted);
 				SetPanelTrue(visitVending);
 				
 			}
@@ -65,11 +70,16 @@ public class UseVending : MonoBehaviour
 			    	//Debug.Log(item);
 			    	isDonut = false;
 			    }
+			    if (isID) {
+			    	pc.SetNumBoneFrag(numBones - 5);
+			    	slapper.halfWantedLevel();
+			    	isID = false;
+			    }
 			    
 			    //Debug.Log(item);
 			    if (item != null) {
 			    	SetPanelFalse(item);
-				    SetPanelFalse(oneBoneCost);
+				    SetPanelFalse(fiveBoneCost);
 				    SetPanelTrue(congrats);
 			    }
 			    item = null;
@@ -140,6 +150,7 @@ public class UseVending : MonoBehaviour
 		//close choose item UI
 		SetPanelFalse(chooseItem);
 		SetPanelFalse(congrats);
+		SetPanelFalse(congratsWanted);
 		SetPanelFalse(oneBoneCost);
 
 		//player already owns donut in inventory
@@ -155,12 +166,14 @@ public class UseVending : MonoBehaviour
 
 				SetPanelFalse(alreadyOwn);
 				SetPanelFalse(congrats);
+				SetPanelFalse(congratsWanted);
 				SetPanelFalse(notEnoughBone);
 			    //open confirmation UI
 			    SetPanelTrue(fiveBoneCost);
 			    isDonut = true;
 			    isStarbucks = false;
-			    isWhiteClaw = false;	
+			    isWhiteClaw = false;
+			    isID = false;	
 
 			} else {
 				//player doesn't have enough bones for donut
@@ -179,6 +192,7 @@ public class UseVending : MonoBehaviour
 		//close choose item UI
 		SetPanelFalse(chooseItem);
 		SetPanelFalse(congrats);
+		SetPanelFalse(congratsWanted);
 		SetPanelFalse(fiveBoneCost);
 
 		//player already owns whiteclaw in inventory
@@ -194,12 +208,14 @@ public class UseVending : MonoBehaviour
 
 				SetPanelFalse(alreadyOwn);
 				SetPanelFalse(congrats);
+				SetPanelFalse(congratsWanted);
 				SetPanelFalse(notEnoughBone);
 			    //open confirmation UI
 			    SetPanelTrue(oneBoneCost);
 			    isDonut = false;
 			    isStarbucks = false;
-			    isWhiteClaw = true;			 
+			    isWhiteClaw = true;	
+			    isID = false;		 
 
 			} else {
 				//player doesn't have enough bones for whiteclaw
@@ -218,6 +234,7 @@ public class UseVending : MonoBehaviour
 		//close choose item UI
 		SetPanelFalse(chooseItem);
 		SetPanelFalse(congrats);
+		SetPanelFalse(congratsWanted);
 		SetPanelFalse(fiveBoneCost);
 
 		//player already owns starbucks in inventory
@@ -233,12 +250,14 @@ public class UseVending : MonoBehaviour
 
 				SetPanelFalse(alreadyOwn);
 				SetPanelFalse(congrats);
+				SetPanelFalse(congratsWanted);
 				SetPanelFalse(notEnoughBone);
 			    //open confirmation UI
 			    SetPanelTrue(oneBoneCost);
 			    isDonut = false;
 			    isStarbucks = true;
-			    isWhiteClaw = false;		    
+			    isWhiteClaw = false;
+			    isID = false;		    
 
 			} else {
 				//player doesn't have enough bones for starbucks
@@ -247,6 +266,40 @@ public class UseVending : MonoBehaviour
 			    item = null;
 			}
 		}
+	}
+
+	public void ClickedID() {
+
+		CanvasGroup temp = GetComponent<CanvasGroup>();
+		item = temp;
+		//Debug.Log(item);
+		//close choose item UI
+		SetPanelFalse(chooseItem);
+		SetPanelFalse(congrats);
+		SetPanelFalse(congratsWanted);
+		SetPanelFalse(oneBoneCost);
+
+		//player has enough bones for starbucks
+			if (numBones >= 5) {
+
+				SetPanelFalse(alreadyOwn);
+				SetPanelFalse(congrats);
+				SetPanelFalse(congratsWanted);
+				SetPanelFalse(notEnoughBone);
+			    //open confirmation UI
+			    SetPanelTrue(fiveBoneCost);
+			    isID = true;
+			    isDonut = false;
+			    isStarbucks = false;
+			    isWhiteClaw = false;		    
+
+			} else {
+				//player doesn't have enough bones for starbucks
+			    SetPanelFalse(alreadyOwn);
+			    SetPanelTrue(notEnoughBone);
+			    item = null;
+			}
+
 	}
 
 	private void SetPanelFalse(CanvasGroup c) {
