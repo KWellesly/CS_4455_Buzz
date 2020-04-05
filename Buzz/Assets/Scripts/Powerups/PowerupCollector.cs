@@ -19,14 +19,20 @@ public class PowerupCollector : MonoBehaviour
     private bool startExpireWhiteClaw;
     public float whiteClawDuration;
 
+    private bool hasHoney;
+    private bool startExpireHoney;
+    public float honeyDuration;
+
     private float startLatteTime;
     private float startWhiteClawTime;
+    private float startHoneyTime;
 
     private BuzzRootMotion motion;
 
     private bool usedLatte;
     private bool usedDonut;
     private bool usedWhiteClaw;
+    private bool usedHoney;
     
     // For throwing
     private Transform handHold;
@@ -43,6 +49,7 @@ public class PowerupCollector : MonoBehaviour
     public AudioClip throwDonut;
     public AudioClip drinkLatte;
     public AudioClip drinkWhiteClaw;
+    public AudioClip eatHoney;
 
     // Start is called before the first frame update
     void Start()
@@ -101,6 +108,21 @@ public class PowerupCollector : MonoBehaviour
                 if (Time.time - startWhiteClawTime > whiteClawDuration)
                 {
                     ExpireWhiteClaw(whiteClawSpeedPenalty);
+                }
+            }
+        }
+
+        if (usedHoney)
+        {
+            if (!startExpireHoney)
+            {
+                InitHoneyInvincibility();
+            }
+            else
+            {
+                if(Time.time - startHoneyTime > honeyDuration)
+                {
+                    ExpireHoney();
                 }
             }
         }
@@ -170,6 +192,8 @@ public class PowerupCollector : MonoBehaviour
         donut.GetComponent<DropDonutScript>().Drop(donutDuration, spawnPoint, donutRb, handHold);
         AudioSource.PlayClipAtPoint(throwDonut, this.gameObject.transform.position);
     }
+
+    //CAN THIS CODE BE REMOVED? -Ben
     public void FixedUpdate() {
         //anim.SetBool("throw", hasDonut && Input.GetKeyDown(KeyCode.Alpha1));
     }
@@ -180,6 +204,24 @@ public class PowerupCollector : MonoBehaviour
         AudioSource.PlayClipAtPoint(pickupBone, this.gameObject.transform.position);
     }
 
+    public void ReceiveHoney()
+    {
+        hasHoney = true;
+        AudioSource.PlayClipAtPoint(pickupPowerUp, this.gameObject.transform.position);
+    }
+
+    public void InitHoneyInvincibility()
+    {
+        startHoneyTime = Time.time;
+        usedHoney = hasHoney = false;
+        Debug.Log("Honey Activated!");
+        AudioSource.PlayClipAtPoint(eatHoney, this.gameObject.transform.position);
+    }
+
+    public void ExpireHoney()
+    {
+        startExpireHoney = usedHoney = false;
+    }
 
     //ally's code
     public bool HasDonut() {
@@ -199,10 +241,14 @@ public class PowerupCollector : MonoBehaviour
         return hasLatte;
     }
 
+    public bool HasHoney()
+    {
+        return hasHoney;
+    }
+
     //setters for when user clicks 1,2,3 on keyboard
     public void UseDonut() {
         usedDonut = true;
-        hasDonut = false;
     }
 
     public void UseWhiteClaw() {
@@ -211,6 +257,11 @@ public class PowerupCollector : MonoBehaviour
 
     public void UseLatte() {
         usedLatte = true;
+    }
+
+    public void UseHoney()
+    {
+        usedHoney = true;
     }
 
     //public functions for bone bar script to use

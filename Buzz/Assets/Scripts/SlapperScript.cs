@@ -27,12 +27,16 @@ public class SlapperScript : MonoBehaviour
     }
 
     void Update() {
-        Vector3 direction = target.transform.position - this.transform.position; 
-        float dotprod = Vector3.Dot(direction, this.transform.forward);
+        if (target != null)
+        {
+            Vector3 direction = target.transform.position - this.transform.position;
+            float dotprod = Vector3.Dot(direction, this.transform.forward);
 
-        if (target != null && isSlappable && Input.GetButtonDown("Fire1") && dotprod > 0) {
-            anim.SetBool("Slap", isSlappable);
-            match = true; // Set for match target
+            if (isSlappable && Input.GetButtonDown("Fire1") && dotprod > 0)
+            {
+                anim.SetBool("Slap", isSlappable);
+                match = true; // Set for match target
+            }
         }
     }
 
@@ -119,8 +123,11 @@ public class SlapperScript : MonoBehaviour
                     // TODO: Ragdolling 
 
                     studentController sc = targetStudent.gameObject.GetComponent<studentController>();
-                    sc.setRagdoll(this);
-
+                    if (sc != null)
+                    {
+                        sc.setRagdoll(this);
+                    }
+                    
                     // get position of slapped student
                     fleeFromSlappedStudent(target.transform.position);
                     policeSearchRadius(target.transform.position);
@@ -165,7 +172,7 @@ public class SlapperScript : MonoBehaviour
                 // get vector of student to slapped_position, reverse it for their new path for a certain distance
                 Vector3 student_pos = hitColliders[i].GetComponentInParent<Transform>().position;
                 Vector3 away_slap_center = (student_pos - slapped_position).normalized;
-                hitColliders[i].GetComponentInParent<studentController>().setNextWaypoint(student_pos + away_slap_center * fear_radius);
+                hitColliders[i].GetComponentInParent<studentController>().setRunawayWaypoint(student_pos + away_slap_center * fear_radius);
 
             }
         }
@@ -180,7 +187,7 @@ public class SlapperScript : MonoBehaviour
         wantedLevel = wantedLevel/2;
     }
 
-    public void inceaseWantedLevel()
+    public void increaseWantedLevel()
     {
         wantedLevel++;
         if (mapWaypoints == null)
@@ -189,10 +196,12 @@ public class SlapperScript : MonoBehaviour
             studentController sc = targetStudent.gameObject.GetComponent<studentController>();
             mapWaypoints = sc.getWaypoints();
         }
+
         int randomIndex = (int) Random.Range(0, mapWaypoints.Length);
         GameObject newPolice = (GameObject) Instantiate(policePrefab, mapWaypoints[randomIndex].transform.position, Quaternion.identity);
         policeController pc = newPolice.gameObject.GetComponent<policeController>();
         pc.buzz = buzz;
+
         //proof pf concept code, spawns police at the first waypoint so you can find them easier
         //GameObject prPolice = (GameObject) Instantiate(policePrefab, mapWaypoints[0].transform.position, Quaternion.identity);
         //policeController pc1 = prPolice.gameObject.GetComponent<policeController>();

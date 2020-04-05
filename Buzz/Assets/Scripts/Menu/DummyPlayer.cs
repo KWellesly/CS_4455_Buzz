@@ -14,6 +14,7 @@ public class DummyPlayer : MonoBehaviour
     bool hasDonut = false;
     bool hasWhiteClaw = false;
     bool hasStarbucks = false;
+    bool hasHoney = false;
 
     void Start() {
     	currentBoneCount = 0;
@@ -64,6 +65,11 @@ public class DummyPlayer : MonoBehaviour
         return hasStarbucks;
     }
 
+    public bool HasHoney()
+    {
+        return hasHoney;
+    }
+
     //setters for when user clicks 1,2,3 on keyboard
     public void SetHasDonut(bool v) {
         hasDonut = v;
@@ -75,5 +81,10 @@ public class DummyPlayer : MonoBehaviour
 
     public void SetHasStarbucks(bool v) {
         hasStarbucks = v;
+    }
+
+    public void SetHasHoney(bool v)
+    {
+        hasHoney = v;
     }
 }

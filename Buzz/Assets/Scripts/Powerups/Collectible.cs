@@ -10,6 +10,7 @@ public class Collectible : MonoBehaviour
         Latte,
         WhiteClaw,
         BoneFragment,
+        Honey,
         DroppedDonut
     }
 
@@ -33,12 +34,15 @@ public class Collectible : MonoBehaviour
                     case CollectibleType.WhiteClaw:
                         collector.ReceiveWhiteClaw();
                         break;
+                    case CollectibleType.Honey:
+                        collector.ReceiveHoney();
+                        break;
                     case CollectibleType.BoneFragment:
                         collector.ReceiveBoneFragment();
                         break;
+                    default:
+                        break;
                 }
-                // TODO - implement sound here
-                // EventManager.TriggerEvent<BombBounceEvent, Vector3>(c.transform.position);
                 Destroy(this.gameObject);
             }
         }

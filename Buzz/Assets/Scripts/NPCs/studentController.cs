@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class studentController : MonoBehaviour
 {
-    public bool isRagdoll; // TODO: replace with State
     private Animator anim;
     public float MaxSpeed = 1;
     public AudioClip slapNoise;
@@ -14,7 +13,6 @@ public class studentController : MonoBehaviour
     {
         ChaseBuzz,
         Wander,
-        RunAway,
         Ragdoll
     }
     private StudentState currentState;
@@ -31,28 +29,28 @@ public class studentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentState = StudentState.Wander;
+
         anim = GetComponent<Animator>();
+
         //for ragdolling
         SetKinematic(true);
-        isRagdoll = false;
 
         currWaypoint = -1;
         setNextWaypoint();
 
         whiteClawActivationDistance = 30;
         buzz = GameObject.Find("Buzz_Root_Motion");
-
-        currentState = StudentState.Wander;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isRagdoll) // TODO: replace with state
+        if (currentState == StudentState.Ragdoll)
 		{
 			SetKinematic(false);
 			GetComponent<Animator>().enabled=false;
-            isRagdoll = true;
+            currentState = StudentState.Ragdoll;
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             gameObject.GetComponent<HittableScript>().enabled = false;
             return;
@@ -61,14 +59,6 @@ public class studentController : MonoBehaviour
         {
             return;
         }
-
-        //keep this duplaicate code here, idk if it will break the animator on ragdoll -Eric :D
-        // mmm spaghetti... 
-        if (isRagdoll) // TODO: replace with state
-		{
-			SetKinematic(false);
-			GetComponent<Animator>().enabled=false;
-		}
 
         float distFromBuzz = float.MaxValue;
         bool whiteClawIsActive = false;
@@ -112,13 +102,12 @@ public class studentController : MonoBehaviour
 
     // overloaded method, in case we want to supply a next waypoint for when students run away
     // Ben: Maybe lets rename this method to not be confusing with the original setNextWayPoint
-    public void setNextWaypoint(Vector3 next_pos)
+    public void setRunawayWaypoint(Vector3 next_pos)
     {
         MaxSpeed = 5;
         nextSpawnPosition = next_pos; // use this for the next spawn point if the current student gets slapped
         agent.SetDestination(next_pos);
         agent.speed = MaxSpeed;
-        currentState = StudentState.RunAway;
     }
 
     public void setNextWaypoint()
@@ -141,20 +130,21 @@ public class studentController : MonoBehaviour
 
     public void setRagdoll(SlapperScript sc)
     {
-        if(isRagdoll) // TODO: replace with state check
+        if(currentState == StudentState.Ragdoll)
         {
             return;
         }
-        isRagdoll = true; // TODO: remove once verified is not needed
         currentState = StudentState.Ragdoll;
-        DropPowerUp();
         AudioSource.PlayClipAtPoint(slapNoise, this.gameObject.transform.position);
+
+        DropPowerUp();
         spawnNewStudent();
-        sc.inceaseWantedLevel();
+        sc.increaseWantedLevel();
     }
     private void spawnNewStudent()
     {
         GameObject newStudent = (GameObject) Instantiate(studentPrefab, nextSpawnPosition, Quaternion.identity);
+
         //below code if a proof of concept for student spawning, uncommment it to play with it
         //it just spawns a new student on top of the one you slapped
         //Transform position = GetComponent<Transform>();
