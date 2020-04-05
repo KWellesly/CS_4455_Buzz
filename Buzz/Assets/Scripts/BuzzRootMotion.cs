@@ -65,6 +65,7 @@ public class BuzzRootMotion : MonoBehaviour
         float inputForward = 0f;
         float inputTurn = 0f;
         bool inputAction = false;
+        float movementSpeed = rootMovementSpeed;
 
         anim.speed = animationSpeed;
         if (cinput.enabled)
@@ -84,7 +85,7 @@ public class BuzzRootMotion : MonoBehaviour
         rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up));
         // Movement
         anim.SetFloat("velx", inputTurn);
-        anim.SetFloat("vely", inputForward);
+        anim.SetFloat("vely", rootMovementSpeed > 2 ? rootMovementSpeed : inputForward);
         anim.SetBool("isFalling", !isGrounded);
     }
 
