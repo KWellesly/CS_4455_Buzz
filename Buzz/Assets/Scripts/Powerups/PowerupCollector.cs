@@ -33,7 +33,8 @@ public class PowerupCollector : MonoBehaviour
     private bool usedDonut;
     private bool usedWhiteClaw;
     private bool usedHoney;
-    
+    private bool drunk;
+
     // For throwing
     private Transform handHold;
     public Animator anim;
@@ -164,6 +165,7 @@ public class PowerupCollector : MonoBehaviour
         startWhiteClawTime = Time.time;
         startExpireWhiteClaw = true;
         hasWhiteClaw = false;
+        anim.SetFloat("drunk", 1.0f);
         AudioSource.PlayClipAtPoint(drinkWhiteClaw, this.gameObject.transform.position);
     }
 
@@ -171,6 +173,7 @@ public class PowerupCollector : MonoBehaviour
     {
         motion.rootMovementSpeed *= factor;
         motion.turnMaxSpeed *= factor;
+        anim.SetFloat("drunk", 0.0f);
         startExpireWhiteClaw = usedWhiteClaw = false;
     }
 
