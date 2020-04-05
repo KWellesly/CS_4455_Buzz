@@ -7,7 +7,7 @@ public class PowerupCollector : MonoBehaviour
 {
 
     private bool hasLatte;
-    public float latteSpeedMultiplier=2f;
+    public float latteSpeedMultiplier=1.5f;
     private bool startExpireLatte;
     public float latteDuration;
 
