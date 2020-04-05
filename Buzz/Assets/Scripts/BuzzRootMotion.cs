@@ -87,7 +87,6 @@ public class BuzzRootMotion : MonoBehaviour
         anim.SetFloat("velx", inputTurn);
         anim.SetFloat("vely", rootMovementSpeed > 2 ? rootMovementSpeed : inputForward);
         anim.SetBool("isFalling", !isGrounded);
-        animationSpeed = rootMovementSpeed > 2 ? 0.8f : 1.2f;  
     }
 
     void OnCollisionEnter(Collision collision)
