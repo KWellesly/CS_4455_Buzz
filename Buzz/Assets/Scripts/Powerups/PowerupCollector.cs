@@ -216,7 +216,8 @@ public class PowerupCollector : MonoBehaviour
     public void InitHoneyInvincibility()
     {
         startHoneyTime = Time.time;
-        usedHoney = hasHoney = false;
+        hasHoney = false;
+        startExpireHoney = true;
         Debug.Log("Honey Activated!");
         AudioSource.PlayClipAtPoint(eatHoney, this.gameObject.transform.position);
     }
@@ -283,5 +284,10 @@ public class PowerupCollector : MonoBehaviour
     public bool DidBuzzCompleteABone()
     {
         return maxBoneCount == numBoneFragments;
+    }
+
+    public bool IsBuzzInvincible()
+    {
+        return startExpireHoney;
     }
 }

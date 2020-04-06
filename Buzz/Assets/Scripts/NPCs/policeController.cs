@@ -60,7 +60,8 @@ public class policeController : MonoBehaviour
             {
                 agent.SetDestination(minDistPos);
             }
-            agent.speed = 3;
+            // increase speed with respect to wanted level
+            agent.speed = 3 + ss.getWantedLevel()*0.3f;
             
             //print("BUZZ!!!!!!!!");
         } else
@@ -90,8 +91,17 @@ public class policeController : MonoBehaviour
         //print("Collided" + x.gameObject.tag);
         if (x.gameObject.tag == "Player")
         {
-            //TODO actually add in the game over screen for when the cop touches buzz, just call scene manager
-            SceneManager.LoadScene("GameOverScene");
+            Debug.Log(buzz.GetComponent<PowerupCollector>().IsBuzzInvincible());
+            if (buzz != null && buzz.GetComponent<PowerupCollector>().IsBuzzInvincible())
+            {
+                //TODO: Need to implement police ragdoll here. Currently Buzz just cant die from cops.
+                Debug.Log("Buzz is Invincible!");
+            }
+            else
+            {
+                //TODO actually add in the game over screen for when the cop touches buzz, just call scene manager
+                SceneManager.LoadScene("GameOverScene");
+            }            
         }
     }
 }
