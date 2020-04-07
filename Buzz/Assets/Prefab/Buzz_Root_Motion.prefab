@@ -409,6 +409,7 @@ MonoBehaviour:
   donutDuration: 0
   whiteClawSpeedPenalty: 0
   whiteClawDuration: 0
+  honeyDuration: 0
   anim: {fileID: 0}
   boneBar: {fileID: 0}
   maxBoneCount: 10
@@ -418,6 +419,7 @@ MonoBehaviour:
   throwDonut: {fileID: 0}
   drinkLatte: {fileID: 0}
   drinkWhiteClaw: {fileID: 0}
+  eatHoney: {fileID: 0}
 --- !u!114 &1364981744178030001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,6 +440,8 @@ MonoBehaviour:
   match: 0
   policePrefab: {fileID: 0}
   buzz: {fileID: 0}
+  audioSource: {fileID: 0}
+  godofwar: {fileID: 0}
 --- !u!1 &2250889323724120979
 GameObject:
   m_ObjectHideFlags: 0
