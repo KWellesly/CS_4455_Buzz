@@ -20,6 +20,10 @@ public class SlapperScript : MonoBehaviour
     public GameObject policePrefab;
     private GameObject[] mapWaypoints;
     public GameObject buzz;
+    public AudioSource audioSource;
+    public AudioClip godofwar;
+    private bool playGodofWar = false;
+    
 
     void Awake()
     {
@@ -27,6 +31,14 @@ public class SlapperScript : MonoBehaviour
     }
 
     void Update() {
+        if (wantedLevel > 1 && !playGodofWar)
+        {
+            playGodofWar = true;
+            audioSource.Stop();
+            audioSource.PlayOneShot(godofwar, 0.3f);
+            audioSource.loop = true;
+        }
+
         if (target != null)
         {
             Vector3 direction = target.transform.position - this.transform.position;

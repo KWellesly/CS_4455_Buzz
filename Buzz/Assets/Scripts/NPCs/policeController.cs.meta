@@ -3,7 +3,10 @@ guid: b42dee6ba4af28740b438ee92eb35659
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - agent: {instanceID: 0}
+  - buzz: {instanceID: 0}
+  - yell: {fileID: 8300000, guid: 2639cc7e7c241bf4eb9642b443e548e8, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

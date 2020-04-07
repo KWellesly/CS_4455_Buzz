@@ -12,7 +12,11 @@ public class policeController : MonoBehaviour
     public GameObject buzz; 
     private int detectionDist;
     private bool buzzCompletedBone;
-    
+    public AudioClip yell;
+    private bool found;
+    private float found_time;
+    public AudioSource yell_audio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,8 @@ public class policeController : MonoBehaviour
         tr = GetComponent<Transform>();
         detectionDist = 0;
         buzzCompletedBone = false;
+        found = false;
+        found_time = Time.time;
     }
 
     // Update is called once per frame
@@ -62,6 +68,19 @@ public class policeController : MonoBehaviour
             }
             // increase speed with respect to wanted level
             agent.speed = 3 + ss.getWantedLevel()*0.3f;
+
+            if (Time.time - found_time > 5)
+            {
+                found = false;
+            }
+            if (!found)
+            {
+                found = true;
+                yell_audio.PlayOneShot(yell, 1.0f);
+                //AudioSource.PlayClipAtPoint(yell, buzz.transform.position, 3.0f);
+                found_time = Time.time;
+            }
+            
             
             //print("BUZZ!!!!!!!!");
         } else

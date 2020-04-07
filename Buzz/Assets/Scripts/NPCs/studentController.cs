@@ -8,6 +8,7 @@ public class studentController : MonoBehaviour
     private Animator anim;
     public float MaxSpeed = 1;
     public AudioClip slapNoise;
+    public AudioSource punch_audio;
 
     public enum StudentState
     {
@@ -29,6 +30,7 @@ public class studentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log("slapNoise = " + slapNoise);
         currentState = StudentState.Wander;
 
         anim = GetComponent<Animator>();
@@ -135,7 +137,8 @@ public class studentController : MonoBehaviour
             return;
         }
         currentState = StudentState.Ragdoll;
-        AudioSource.PlayClipAtPoint(slapNoise, this.gameObject.transform.position);
+        punch_audio.PlayOneShot(slapNoise, 1.0f);
+        //AudioSource.PlayOneShot(slapNoise, this.gameObject.transform.position);
 
         DropPowerUp();
         spawnNewStudent();

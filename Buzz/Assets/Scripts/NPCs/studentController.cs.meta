@@ -3,7 +3,11 @@ guid: a06b4bae30da22444872fafe106718ad
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - slapNoise: {fileID: 8300000, guid: 03b07af353f4c014199669e1dc9acccd, type: 3}
+  - agent: {instanceID: 0}
+  - buzz: {instanceID: 0}
+  - studentPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
