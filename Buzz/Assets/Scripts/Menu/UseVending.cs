@@ -45,7 +45,11 @@ public class UseVending : MonoBehaviour
 				SetPanelFalse(congrats);
 				SetPanelFalse(congratsWanted);
 				SetPanelTrue(visitVending);
-				
+				item = null;
+				isDonut = false;
+				isID = false;
+				isStarbucks = false;
+				isWhiteClaw = false;
 			}
 		}
 
@@ -87,6 +91,8 @@ public class UseVending : MonoBehaviour
 			} else if (Input.GetKeyDown(KeyCode.N)) {
 			    SetPanelFalse(fiveBoneCost);
 			    SetPanelTrue(chooseItem);
+			    isID = false;
+			    isDonut = false;
 			    item = null;
 			}
 		}
@@ -124,6 +130,8 @@ public class UseVending : MonoBehaviour
 			} else if (Input.GetKeyDown(KeyCode.N)) {
 			    SetPanelFalse(oneBoneCost);
 			    SetPanelTrue(chooseItem);
+			    isStarbucks = false;
+			    isWhiteClaw = false;
 			    item = null;
 			}
 		}
