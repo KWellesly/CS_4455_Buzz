@@ -161,17 +161,21 @@ public class studentController : MonoBehaviour
         {
             return 0;
         }
-        else if (rand > .05f && rand <= .20f)
+        else if (rand > .05f && rand <= .10f)
         {
             return 1;
         }
-        else if (rand > .20f && rand <= .35f)
+        else if (rand > .10f && rand <= .25f)
         {
             return 2;
-        } 
-        else if (rand > .35f && rand <= .50f)
+        }
+        else if (rand > .25f && rand <= .40f)
         {
             return 3;
+        } 
+        else if (rand > .40f && rand <= .75f)
+        {
+            return 4;
         }
         else
         {
@@ -190,12 +194,15 @@ public class studentController : MonoBehaviour
                 droppedPowerUp = Instantiate(Resources.Load("Donut")) as GameObject;
                 break;
             case 1:
-                droppedPowerUp = Instantiate(Resources.Load("Latte")) as GameObject;
+                droppedPowerUp = Instantiate(Resources.Load("Honey")) as GameObject;
                 break;
             case 2:
-                droppedPowerUp = Instantiate(Resources.Load("WhiteClaw")) as GameObject;
+                droppedPowerUp = Instantiate(Resources.Load("Latte")) as GameObject;
                 break;
             case 3:
+                droppedPowerUp = Instantiate(Resources.Load("WhiteClaw")) as GameObject;
+                break;
+            case 4:
                 droppedPowerUp = Instantiate(Resources.Load("Bone Fragment")) as GameObject;
                 break;
             default:
@@ -204,7 +211,7 @@ public class studentController : MonoBehaviour
         }
 
         Vector3 studentPos = this.gameObject.transform.position;
-        Vector3 spawnPoint = new Vector3(studentPos.x, studentPos.y + 0.5f, studentPos.z);
+        Vector3 spawnPoint = new Vector3(studentPos.x + 0.2f, studentPos.y + 0.5f, studentPos.z + 0.2f);
         if (droppedPowerUp != null)
         {
             droppedPowerUp.GetComponent<Collectible>().Drop(spawnPoint);

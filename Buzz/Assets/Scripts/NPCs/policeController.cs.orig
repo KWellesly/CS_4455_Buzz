@@ -68,6 +68,8 @@ public class policeController : MonoBehaviour
             }
             // increase speed with respect to wanted level
             agent.speed = 3 + ss.getWantedLevel()*0.3f;
+<<<<<<< HEAD
+=======
 
             if (Time.time - found_time > 5)
             {
@@ -83,6 +85,8 @@ public class policeController : MonoBehaviour
                 } 
                 found_time = Time.time;
             }
+            
+>>>>>>> 7e1fac7ef31114b50396870dfba1dc8c29ae5d09
             
             //print("BUZZ!!!!!!!!");
         } else
@@ -112,6 +116,7 @@ public class policeController : MonoBehaviour
         //print("Collided" + x.gameObject.tag);
         if (x.gameObject.tag == "Player")
         {
+            Debug.Log(buzz.GetComponent<PowerupCollector>().IsBuzzInvincible());
             if (buzz != null && buzz.GetComponent<PowerupCollector>().IsBuzzInvincible())
             {
                 //TODO: Need to implement police ragdoll here. Currently Buzz just cant die from cops.

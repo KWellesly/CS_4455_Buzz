@@ -137,7 +137,6 @@ public class PowerupCollector : MonoBehaviour
 
     public void InitLatteSpeedup(float factor)
     {
-        Debug.Log(factor);
         motion.rootMovementSpeed *= factor;
         motion.turnMaxSpeed *= factor;
         startLatteTime = Time.time;
