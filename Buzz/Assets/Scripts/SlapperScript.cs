@@ -31,7 +31,7 @@ public class SlapperScript : MonoBehaviour
     }
 
     void Update() {
-        if (wantedLevel > 1 && !playGodofWar)
+        if (wantedLevel > 5 && !playGodofWar)
         {
             playGodofWar = true;
             audioSource.Stop();

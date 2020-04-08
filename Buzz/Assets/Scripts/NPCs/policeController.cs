@@ -75,9 +75,12 @@ public class policeController : MonoBehaviour
             }
             if (!found)
             {
+
                 found = true;
-                yell_audio.PlayOneShot(yell, 1.0f);
-                //AudioSource.PlayClipAtPoint(yell, buzz.transform.position, 3.0f);
+                if (Random.Range(0.0f, 1.0f) > 0.6)
+                {
+                    yell_audio.PlayOneShot(yell, 1.0f);
+                } 
                 found_time = Time.time;
             }
             
