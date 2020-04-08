@@ -20,8 +20,9 @@ public class SlapperScript : MonoBehaviour
     public GameObject policePrefab;
     private GameObject[] mapWaypoints;
     public GameObject buzz;
-    public AudioSource audioSource;
-    public AudioClip godofwar;
+    public AudioSource mapleMusic;
+    public AudioSource godOfWarMusic;
+    public AudioSource winnieMusic;
     private bool playGodofWar = false;
     
 
@@ -31,12 +32,12 @@ public class SlapperScript : MonoBehaviour
     }
 
     void Update() {
+
         if (wantedLevel > 5 && !playGodofWar)
         {
             playGodofWar = true;
-            audioSource.Stop();
-            audioSource.PlayOneShot(godofwar, 0.3f);
-            audioSource.loop = true;
+            mapleMusic.Stop();
+            godOfWarMusic.Play();
         }
 
         if (target != null)
@@ -219,5 +220,34 @@ public class SlapperScript : MonoBehaviour
         //policeController pc1 = prPolice.gameObject.GetComponent<policeController>();
         //pc1.buzz = buzz;
 
+    }
+
+    public void startHoneyMusic()
+    {
+        if (playGodofWar)
+        {
+            godOfWarMusic.Pause();
+        }
+        else
+        {
+            mapleMusic.Pause();
+        }
+
+        winnieMusic.Play();
+
+    }
+
+    public void resumeNormalMusic()
+    {
+        winnieMusic.Stop();
+
+        if (playGodofWar)
+        {
+            godOfWarMusic.Play();
+        }
+        else
+        {
+            mapleMusic.Play();
+        }
     }
 }

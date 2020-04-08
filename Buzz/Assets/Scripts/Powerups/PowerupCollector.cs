@@ -28,6 +28,7 @@ public class PowerupCollector : MonoBehaviour
     private float startHoneyTime;
 
     private BuzzRootMotion motion;
+    private SlapperScript ss;
 
     private bool usedLatte;
     private bool usedDonut;
@@ -66,6 +67,7 @@ public class PowerupCollector : MonoBehaviour
         usedLatte = usedWhiteClaw = usedDonut = false;
         startExpireLatte = startExpireWhiteClaw = false;
         motion = GetComponent<BuzzRootMotion>();
+        ss = GetComponent<SlapperScript>();
     }
 
     void Awake()
@@ -218,12 +220,20 @@ public class PowerupCollector : MonoBehaviour
         hasHoney = false;
         startExpireHoney = true;
         Debug.Log("Honey Activated!");
-        AudioSource.PlayClipAtPoint(eatHoney, this.gameObject.transform.position);
+        if (ss != null)
+        {
+            ss.startHoneyMusic();
+        }
     }
 
     public void ExpireHoney()
     {
         startExpireHoney = usedHoney = false;
+        if (ss != null)
+        {
+            ss.resumeNormalMusic();
+        }
+
     }
 
     //ally's code
