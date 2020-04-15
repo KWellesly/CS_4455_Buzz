@@ -19,6 +19,9 @@ public class BuzzInputController : MonoBehaviour
     private float forwardSpeedLimit = 1f;
     private SlapperScript slapScript;
 
+    public Camera main_camera;
+    public Camera reverse_camera;
+
     public float Forward
     {
         get;
@@ -67,18 +70,33 @@ public class BuzzInputController : MonoBehaviour
         else {
             forwardSpeedLimit = 0.6f; 
         }
-
         // Filter input and clamp speed 
         filteredForwardInput = Mathf.Clamp(Mathf.Lerp(filteredForwardInput, v,
             Time.deltaTime * forwardInputFilter), -forwardSpeedLimit, forwardSpeedLimit);
 
         filteredTurnInput = Mathf.Lerp(filteredTurnInput, h,
             Time.deltaTime * turnInputFilter);
+        
 
         // Final Variables For Control  
         Forward = filteredForwardInput;
         Turn = filteredTurnInput;
         Action = Input.GetButtonDown("Fire1");
+
+        // Reverse camera if "R" is pressed
+        if (Input.GetButtonDown("Reverse"))
+        {
+            main_camera.enabled = false;
+            reverse_camera.enabled = true;
+            
+
+        }
+        if (Input.GetButtonUp("Reverse"))
+        {
+            reverse_camera.enabled = false;
+            main_camera.enabled = true;
+        }
+
     }
 
     public void FixedUpdate()

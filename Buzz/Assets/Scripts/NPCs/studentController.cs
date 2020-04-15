@@ -30,7 +30,6 @@ public class studentController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("slapNoise = " + slapNoise);
         currentState = StudentState.Wander;
 
         anim = GetComponent<Animator>();
@@ -147,7 +146,12 @@ public class studentController : MonoBehaviour
     private void spawnNewStudent()
     {
         GameObject newStudent = (GameObject) Instantiate(studentPrefab, nextSpawnPosition, Quaternion.identity);
-
+        newStudent.GetComponent<HittableScript>().player = null;
+        newStudent.GetComponent<Collider>().enabled = true;
+        Transform[] transforms = newStudent.GetComponentsInChildren<Transform>();
+        foreach (Transform transform in transforms)
+            transform.gameObject.layer = 11;
+        //Debug.Log("Spawneed new student: " + newStudent);
         //below code if a proof of concept for student spawning, uncommment it to play with it
         //it just spawns a new student on top of the one you slapped
         //Transform position = GetComponent<Transform>();
