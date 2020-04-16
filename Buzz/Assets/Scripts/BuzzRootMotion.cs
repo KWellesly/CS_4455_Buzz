@@ -85,8 +85,9 @@ public class BuzzRootMotion : MonoBehaviour
         rbody.MoveRotation(rbody.rotation * Quaternion.AngleAxis(inputTurn * Time.deltaTime * turnMaxSpeed, Vector3.up));
         // Movement
         anim.SetFloat("velx", inputTurn);
-        anim.SetFloat("vely", rootMovementSpeed > 2 ? rootMovementSpeed : inputForward);
+        anim.SetFloat("vely", inputForward);
         anim.SetBool("isFalling", !isGrounded);
+
     }
 
     void OnCollisionEnter(Collision collision)
