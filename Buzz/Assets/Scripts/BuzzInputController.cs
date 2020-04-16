@@ -61,15 +61,7 @@ public class BuzzInputController : MonoBehaviour
             h = -0.5f;
         else if (Input.GetKey(KeyCode.E))
             h = 0.5f;
-
-        // Forward speed limit to shift // Shift for running  
-        if (Input.GetKey(KeyCode.LeftShift)) // DEBUG: Left Shift Not Working
-        {
-            forwardSpeedLimit = 1.0f;
-        }
-        else {
-            forwardSpeedLimit = 0.6f; 
-        }
+        
         // Filter input and clamp speed 
         filteredForwardInput = Mathf.Clamp(Mathf.Lerp(filteredForwardInput, v,
             Time.deltaTime * forwardInputFilter), -forwardSpeedLimit, forwardSpeedLimit);
