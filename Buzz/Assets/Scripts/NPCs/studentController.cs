@@ -161,23 +161,24 @@ public class studentController : MonoBehaviour
     private int getRandomPowerUpValue()
     {
         float rand = Random.value;
-        if (rand <= .05f)
+        print("Rand number is: " + rand);
+        if (rand <= .1f)
         {
             return 0;
         }
-        else if (rand > .05f && rand <= .10f)
+        else if (rand > .1f && rand <= .2f)
         {
             return 1;
         }
-        else if (rand > .10f && rand <= .25f)
+        else if (rand > .2f && rand <= .35f)
         {
             return 2;
         }
-        else if (rand > .25f && rand <= .40f)
+        else if (rand > .35f && rand <= .5f)
         {
             return 3;
         } 
-        else if (rand > .40f && rand <= .75f)
+        else if (rand > .5f && rand <= .85f)
         {
             return 4;
         }
