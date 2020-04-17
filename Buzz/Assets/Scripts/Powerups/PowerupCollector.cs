@@ -15,7 +15,6 @@ public class PowerupCollector : MonoBehaviour
     public float donutDuration;
 
     private bool hasWhiteClaw;
-    public float whiteClawSpeedPenalty=2f;
     private bool startExpireWhiteClaw;
     public float whiteClawDuration;
 
@@ -104,13 +103,13 @@ public class PowerupCollector : MonoBehaviour
         {
             if (!startExpireWhiteClaw)
             {
-                InitWhiteClawSlowdown(whiteClawSpeedPenalty);
+                InitWhiteClawSlowdown();
             }
             else
             {
                 if (Time.time - startWhiteClawTime > whiteClawDuration)
                 {
-                    ExpireWhiteClaw(whiteClawSpeedPenalty);
+                    ExpireWhiteClaw();
                 }
             }
         }
@@ -159,10 +158,8 @@ public class PowerupCollector : MonoBehaviour
         AudioSource.PlayClipAtPoint(pickupPowerUp, this.gameObject.transform.position);
     }
 
-    public void InitWhiteClawSlowdown(float factor)
+    public void InitWhiteClawSlowdown()
     {
-        motion.rootMovementSpeed /= factor;
-        motion.turnMaxSpeed /= factor;
         startWhiteClawTime = Time.time;
         startExpireWhiteClaw = true;
         hasWhiteClaw = false;
@@ -170,10 +167,8 @@ public class PowerupCollector : MonoBehaviour
         AudioSource.PlayClipAtPoint(drinkWhiteClaw, this.gameObject.transform.position);
     }
 
-    public void ExpireWhiteClaw(float factor)
+    public void ExpireWhiteClaw()
     {
-        motion.rootMovementSpeed *= factor;
-        motion.turnMaxSpeed *= factor;
         anim.SetFloat("drunk", 0.0f);
         startExpireWhiteClaw = usedWhiteClaw = false;
     }
