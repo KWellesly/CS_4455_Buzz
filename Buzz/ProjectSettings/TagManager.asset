@@ -10,6 +10,7 @@ TagManager:
   - DroppedDonut
   - VendingUI
   - WinGate
+  - Icon
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Police
   - BothCameras
   - Minimap
-  - 
+  - None
   - 
   - 
   - 
