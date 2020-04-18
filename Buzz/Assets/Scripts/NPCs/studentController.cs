@@ -27,6 +27,7 @@ public class studentController : MonoBehaviour
     private int currWaypoint; 
     Vector3 nextSpawnPosition;
     public GameObject studentPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +47,8 @@ public class studentController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+
         if (currentState == StudentState.Ragdoll)
 		{
 			SetKinematic(false);
@@ -54,6 +56,11 @@ public class studentController : MonoBehaviour
             currentState = StudentState.Ragdoll;
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
             gameObject.GetComponent<HittableScript>().enabled = false;
+            Transform[] transforms = gameObject.GetComponentsInChildren<Transform>();
+            foreach (Transform transform in transforms) {
+                if (transform.gameObject.tag == "Icon")
+                    transform.gameObject.layer = 16;
+            }
             return;
 		}
         if (anim == null)
@@ -149,8 +156,13 @@ public class studentController : MonoBehaviour
         newStudent.GetComponent<HittableScript>().player = null;
         newStudent.GetComponent<Collider>().enabled = true;
         Transform[] transforms = newStudent.GetComponentsInChildren<Transform>();
-        foreach (Transform transform in transforms)
+        foreach (Transform transform in transforms) {
             transform.gameObject.layer = 11;
+            
+            if (transform.gameObject.tag == "Icon")
+                transform.gameObject.layer = 15;
+        }
+
         //Debug.Log("Spawneed new student: " + newStudent);
         //below code if a proof of concept for student spawning, uncommment it to play with it
         //it just spawns a new student on top of the one you slapped
