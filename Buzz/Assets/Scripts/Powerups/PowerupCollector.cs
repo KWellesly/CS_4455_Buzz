@@ -214,7 +214,6 @@ public class PowerupCollector : MonoBehaviour
         startHoneyTime = Time.time;
         hasHoney = false;
         startExpireHoney = true;
-        Debug.Log("Honey Activated!");
         if (ss != null)
         {
             ss.startHoneyMusic();
