@@ -173,7 +173,6 @@ public class studentController : MonoBehaviour
     private int getRandomPowerUpValue()
     {
         float rand = Random.value;
-        print("Rand number is: " + rand);
         if (rand <= .1f)
         {
             return 0;

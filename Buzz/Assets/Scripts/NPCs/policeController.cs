@@ -114,8 +114,7 @@ public class policeController : MonoBehaviour
         {
             if (buzz != null && buzz.GetComponent<PowerupCollector>().IsBuzzInvincible())
             {
-                //TODO: Need to implement police ragdoll here. Currently Buzz just cant die from cops.
-                Debug.Log("Buzz is Invincible!");
+                // Buzz is invincible
             }
             else
             {
