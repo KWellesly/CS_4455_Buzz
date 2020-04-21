@@ -23,17 +23,32 @@ public class SlapperScript : MonoBehaviour
     public AudioSource mapleMusic;
     public AudioSource godOfWarMusic;
     public AudioSource winnieMusic;
-    private bool playGodofWar = false;
+    public AudioSource whiteClawMusic;
+    private bool playGodofWar;
+    private bool playWinnieMusic;
+    private bool playWhiteClawMusic;
+    private PowerupCollector pc;
     
 
     void Awake()
     {
         anim = GetComponent<Animator>();
+        playGodofWar = playWhiteClawMusic = playWinnieMusic = false;
     }
 
     void Update() {
 
-        if (wantedLevel > 5 && !playGodofWar)
+        if (pc == null)
+        {
+            pc = buzz.GetComponent<PowerupCollector>();
+        }
+
+        bool powerUpMusicActive = playWinnieMusic || playWhiteClawMusic;
+
+        godOfWarMusic.mute = powerUpMusicActive;
+        mapleMusic.mute = powerUpMusicActive;
+
+        if ((wantedLevel > 20 || pc.DidBuzzCompleteABone()) && !playGodofWar && !(powerUpMusicActive))
         {
             playGodofWar = true;
             mapleMusic.Stop();
@@ -230,30 +245,48 @@ public class SlapperScript : MonoBehaviour
 
     public void startHoneyMusic()
     {
-        if (playGodofWar)
+        if (playWhiteClawMusic)
         {
-            godOfWarMusic.Pause();
-        }
-        else
-        {
-            mapleMusic.Pause();
+            whiteClawMusic.mute = true;
         }
 
         winnieMusic.Play();
-
+        playWinnieMusic = true;
     }
 
-    public void resumeNormalMusic()
+    public void startWhiteClawMusic()
+    {
+        if (playWinnieMusic)
+        {
+            winnieMusic.mute = true;
+        }
+
+        whiteClawMusic.time = 43.5f;
+        whiteClawMusic.Play();
+        playWhiteClawMusic = true;
+    }
+
+    public void stopWinnieMusic()
     {
         winnieMusic.Stop();
 
-        if (playGodofWar)
+        if (playWhiteClawMusic)
         {
-            godOfWarMusic.Play();
+            whiteClawMusic.mute = false;
         }
-        else
+
+        playWinnieMusic = false;
+    }
+
+    public void stopWhiteClawMusic()
+    {
+        whiteClawMusic.Stop();
+
+        if (playWinnieMusic)
         {
-            mapleMusic.Play();
+            winnieMusic.mute = false;
         }
+
+        playWhiteClawMusic = false;
     }
 }

@@ -189,7 +189,7 @@ public class studentController : MonoBehaviour
         {
             return 3;
         } 
-        else if (rand > .5f && rand <= .85f)
+        else if (rand > .5f && rand <= .875f)
         {
             return 4;
         }

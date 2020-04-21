@@ -1562,6 +1562,7 @@ MonoBehaviour:
   buzz: {fileID: 0}
   yell: {fileID: 0}
   yell_audio: {fileID: 0}
+  gameOverSound: {fileID: 8300000, guid: 1cbdc4464e1b3c94382df5f45b3b11d8, type: 3}
 --- !u!195 &7457558399259628953
 NavMeshAgent:
   m_ObjectHideFlags: 0

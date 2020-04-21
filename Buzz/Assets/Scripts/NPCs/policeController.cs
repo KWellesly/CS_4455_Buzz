@@ -11,11 +11,15 @@ public class policeController : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent;
     public GameObject buzz; 
     private int detectionDist;
+    private int numBones;
     private bool buzzCompletedBone;
     public AudioClip yell;
     private bool found;
     private float found_time;
     public AudioSource yell_audio;
+    private SlapperScript ss;
+    private PowerupCollector pc;
+    public AudioClip gameOverSound;
 
     // Start is called before the first frame update
     void Start()
@@ -35,11 +39,21 @@ public class policeController : MonoBehaviour
         {
             return;
         }
-        PowerupCollector pc = buzz.gameObject.GetComponent<PowerupCollector>();
+
+        if (ss == null)
+        {
+            ss = buzz.gameObject.GetComponent<SlapperScript>();
+        }
+
+        if (pc == null)
+        {
+            pc = buzz.gameObject.GetComponent<PowerupCollector>();
+        }
+
+        int wantedLevel = ss.getWantedLevel();
+        detectionDist = 3 * wantedLevel;
         buzzCompletedBone = pc.DidBuzzCompleteABone();
 
-        SlapperScript ss = buzz.gameObject.GetComponent<SlapperScript>();
-        detectionDist = 3 * ss.getWantedLevel();
         //I used distance btwn buzz and the cop, if buzz is close enough, pathfind to him
         //Implement donut chase lofic here maybe?
         Vector3 distVec = buzz.transform.position - tr.position;
@@ -48,7 +62,7 @@ public class policeController : MonoBehaviour
         // start with default values and override if donut in view
         float minDist = float.MaxValue;
         Vector3 minDistPos = agent.transform.position;
-        if (dist < 15 + detectionDist || buzzCompletedBone)
+        if ((wantedLevel > 0 && dist < 15 + detectionDist) || buzzCompletedBone)
         {
             GameObject[] droppedDonuts = GameObject.FindGameObjectsWithTag("DroppedDonut");
             foreach (GameObject donut in droppedDonuts)
@@ -120,7 +134,7 @@ public class policeController : MonoBehaviour
             {
                 //TODO actually add in the game over screen for when the cop touches buzz, just call scene manager
                 SceneManager.LoadScene("GameOverScene");
-            }            
+            }
         }
     }
 }
