@@ -103,7 +103,7 @@ public class PowerupCollector : MonoBehaviour
         {
             if (!startExpireWhiteClaw)
             {
-                InitWhiteClawSlowdown();
+                InitWhiteClaw();
             }
             else
             {
@@ -158,19 +158,21 @@ public class PowerupCollector : MonoBehaviour
         AudioSource.PlayClipAtPoint(pickupPowerUp, this.gameObject.transform.position);
     }
 
-    public void InitWhiteClawSlowdown()
+    public void InitWhiteClaw()
     {
         startWhiteClawTime = Time.time;
         startExpireWhiteClaw = true;
         hasWhiteClaw = false;
         anim.SetFloat("drunk", 1.0f);
         AudioSource.PlayClipAtPoint(drinkWhiteClaw, this.gameObject.transform.position);
+        ss.startWhiteClawMusic();
     }
 
     public void ExpireWhiteClaw()
     {
         anim.SetFloat("drunk", 0.0f);
         startExpireWhiteClaw = usedWhiteClaw = false;
+        ss.stopWhiteClawMusic();
     }
 
 
@@ -225,7 +227,7 @@ public class PowerupCollector : MonoBehaviour
         startExpireHoney = usedHoney = false;
         if (ss != null)
         {
-            ss.resumeNormalMusic();
+            ss.stopWinnieMusic();
         }
 
     }
