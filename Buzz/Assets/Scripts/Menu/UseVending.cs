@@ -74,11 +74,6 @@ public class UseVending : MonoBehaviour
 			    	//Debug.Log(item);
 			    	isDonut = false;
 			    }
-			    if (isID) {
-			    	pc.SetNumBoneFrag(numBones - 5);
-			    	slapper.halfWantedLevel();
-			    	isID = false;
-			    }
 			    
 			    //Debug.Log(item);
 			    if (item != null) {
@@ -91,7 +86,6 @@ public class UseVending : MonoBehaviour
 			} else if (Input.GetKeyDown(KeyCode.N)) {
 			    SetPanelFalse(fiveBoneCost);
 			    SetPanelTrue(chooseItem);
-			    isID = false;
 			    isDonut = false;
 			    item = null;
 			}
@@ -118,6 +112,12 @@ public class UseVending : MonoBehaviour
 			    	isWhiteClaw = false;
 			    }
 
+			    if (isID) {
+			    	pc.SetNumBoneFrag(numBones - 1);
+			    	slapper.halfWantedLevel();
+			    	isID = false;
+			    }
+
 			    //Debug.Log(item);
 			    if (item != null) {
 			    	SetPanelFalse(item);
@@ -132,6 +132,7 @@ public class UseVending : MonoBehaviour
 			    SetPanelTrue(chooseItem);
 			    isStarbucks = false;
 			    isWhiteClaw = false;
+			    isID = false;
 			    item = null;
 			}
 		}
@@ -285,17 +286,17 @@ public class UseVending : MonoBehaviour
 		SetPanelFalse(chooseItem);
 		SetPanelFalse(congrats);
 		SetPanelFalse(congratsWanted);
-		SetPanelFalse(oneBoneCost);
+		SetPanelFalse(fiveBoneCost);
 
 		//player has enough bones for starbucks
-			if (numBones >= 5) {
+			if (numBones >= 1) {
 
 				SetPanelFalse(alreadyOwn);
 				SetPanelFalse(congrats);
 				SetPanelFalse(congratsWanted);
 				SetPanelFalse(notEnoughBone);
 			    //open confirmation UI
-			    SetPanelTrue(fiveBoneCost);
+			    SetPanelTrue(oneBoneCost);
 			    isID = true;
 			    isDonut = false;
 			    isStarbucks = false;

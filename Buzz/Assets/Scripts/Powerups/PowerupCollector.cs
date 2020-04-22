@@ -288,7 +288,7 @@ public class PowerupCollector : MonoBehaviour
     
     public bool DidBuzzCompleteABone()
     {
-        return maxBoneCount == numBoneFragments;
+        return numBoneFragments >= maxBoneCount;
     }
 
     public bool IsBuzzInvincible()
