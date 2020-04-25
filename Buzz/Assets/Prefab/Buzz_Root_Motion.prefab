@@ -523,6 +523,7 @@ MonoBehaviour:
   mapleMusic: {fileID: 0}
   godOfWarMusic: {fileID: 0}
   winnieMusic: {fileID: 0}
+  whiteClawMusic: {fileID: 0}
 --- !u!1 &2250889323724120979
 GameObject:
   m_ObjectHideFlags: 0
