@@ -13,6 +13,11 @@ public class GoToPlayableGame : MonoBehaviour
 
     public void ClickGoButton()
     {
+        GameObject introMusic = GameObject.Find("IntroMusic");
+        if (introMusic != null)
+        {
+            Destroy(introMusic);
+        }
         SceneManager.LoadScene("Kevin_Scene");
     }
 }
