@@ -65,11 +65,6 @@ public class SlapperScript : MonoBehaviour
                 anim.SetBool("Slap", isSlappable);
                 match = true; // Set for match target
                 //Debug.Log("target = " + target);
-                target.GetComponent<CapsuleCollider>().enabled = false;
-                target.layer = 4;
-                Transform[] transforms = target.GetComponentsInChildren<Transform>();
-                foreach (Transform transform in transforms)
-                    transform.gameObject.layer = 4;
             }
         }
     }
@@ -165,6 +160,13 @@ public class SlapperScript : MonoBehaviour
                     // get position of slapped student
                     fleeFromSlappedStudent(target.transform.position);
                     policeSearchRadius(target.transform.position);
+
+
+                    target.GetComponent<CapsuleCollider>().enabled = false;
+                    target.layer = 4;
+                    Transform[] transforms = target.GetComponentsInChildren<Transform>();
+                    foreach (Transform transform in transforms)
+                        transform.gameObject.layer = 4;
 
                 }
             }
