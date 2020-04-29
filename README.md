@@ -101,7 +101,7 @@ You are Buzz, Georgia Tech's beloved mascot and you have been trapped on an unkn
 
 - Minimal clipping and players are confined to the bounds of the map (fence)
 
--Donut: power up that can be dropped by the user that will cause the police to chase the donut instead of Buzz
+- Donut: power up that can be dropped by the user that will cause the police to chase the donut instead of Buzz
 
 - White Claw: power up that will cause students to be attracted to Buzz’s popularity
 
