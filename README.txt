@@ -1,91 +1,319 @@
-PREMISE 
-- You are Buzz, Georgia Tech's beloved mascot and you have been trapped on an unknown rival university's campus.
-You must explore the area to find a way out before it's too late! Careful, because the campus police is watching you. 
 
-CONTROLS  
-- Use the arrow keys or wasd keys to move your character
-- Hold Left shift - Run 
-- Ctrl or Left Click - Interact
-- 1, 2, 3 - Abilities from power ups 
+# Buzz Out
+
+You are Buzz, Georgia Tech's beloved mascot and you have been trapped on an unknown rival university's campus. You must explore the area to find a way out before it's too late! Careful, because the campus police are watching you.
+
+  
+
+## Contacts
+
+* Kevin Chen | kchen357 | kchen357@gatech.edu
+
+* Eric Le | eric8 | eric8@gatech.edu
+
+* Chanhee Lee | clee643 | clee643@gatech.edu
+
+* Siyuan (Ally) Liu | sliu402 | ally.liu@gatech.edu
+
+* Benjamin Vargas | bvargas3 | ben.var@gatech.edu
+
+  
+
+## Controls
+
+- Use the arrow keys or WASD keys to move your character
+
+- Space or Left Click - Interact
+
+- 1, 2, 3, 4 - Abilities from power ups
+
 - Esc - Pause game
-- i - Toggle inventory 
 
-INFORMATION FOR THE TA 
-- The ultimate goal is to knock out the students on campus. Each student has a chance to drop a power up or a bone fragment 
-- Bone fragments will fill up the bone bar at the top right screen
-- Once the bone bar is full, find the bulldogs that are guarding the exit to bribe them and leave campus
-- The more bones you have, the more 
+- i - Toggle inventory
 
-COMPLETED FOR ALPHA 
-- Buzz can move around using root motion 
-- Buzz can run with shift held down 
-- Buzz can knock out students when it is near a student. This will cause the student to ragdoll 
-- Buzz uses inverse kinematics to aim for the student's head 
-- Students will walk around campus using AI pathing 
-- Police will chase the buzz if buzz gets too close 
-- Power Up Latte: Speed up
-- Power Up White Claw: Speed down 
-- Power Up Donut: Will eventually be used to distract police officers but for now only throwing has been implemented
+- r - Reverse camera view
 
-FEATURES THAT ARE COMING 
-- Graphics and models for buzz, power ups, police, students, and bulldogs 
-- Bulldogs will respond with a hint to find bones to beat the level 
-- Students will drop power ups or bone fragments when knocked out 
-- Difficulty level increases as more bones are collected. This will spawn more police officers
-- After 5 minutes, you will enter danger mode where many police officers will start chasing you, regardless of how many bones you have
-- Safe zone that will reset the difficulty level when buzz stays in the area for a set amount of time 
-- Make the White Claw a “popularity”-inducing drink that will cause students to want to slowly gravitate towards Buzz, making it easier to complete his goal (but also make it more dangerous since the police will have an easier time catching Buzz)
-- To add a level of mastery to the game, Buzz will be able to slap the police
-- Jumping animation
-- Some interactable items we plan on adding include environment vending machines, where buzz can use a bone fragment to get a power up.
-- Hiding spaces to evade police
-- Advancements to police AI so that they will look more closely at areas where Buzz recently ragdolled a student
-- The campus will be expanded and walled in with a fence to enforce spatial limitations of the campus
+  
 
-Technical requirements satisfied:
+## Game Requirements
 
-3D Game Feel:
+  
+
+### 3D Game Feel:
+
 - Game restarts in a clean state after game overs and game restarts.
-- Goal of the game can be found in the introduction, hints will also be played by guarding bulldogs at the exit gates.
-- Game is played in third person, in which the player will control and move buzz around the campus. Camera and collision bounds still need some work.
 
-Precursors to Fun Gameplay:
+- Game starts with explaining the background story, objective, and interactable elements of the game
+
+- Music cues/sound effects with every interactable object
+
+- Music and visual cues when the game enters the “end game” state
+
+- Police will yell “Stop right there criminal scum” when they begin chasing Buzz
+
+- Game is played in third person, in which the player will control and move Buzz around the campus
+
+  
+
+### Precursors to Fun Gameplay:
+
 - This game is intended to be wacky and chaotic
-- Ragdolls are meant to add comedic effects, we plan to add in directional vector force to give slaps a bit of a weighty feeling.
-- More NPCs will be added to that the player is constantly on the move, to either slap students or by running from the police. We don’t want the player to be standing still or idle for most of the game, we constantly want them to be moving.
 
-3D Character with Real Time Control:
-- Buzz can be moved with standard WASD movement, you can press and hold left shift to run.
-- Buzz comes with root motion enabled, which blends in smooth movement when transitioning from standing->walking->running
-- Slap button is mapped to “fire1”. You can Left Mouse Click or L-CTRL when in close proximity to a student to begin a slap animation.
-    - Slap animations are implemented with IK, this maps Buzz’s hand to the students’ face when the animation is played
-    - Slap animations are accompanied by a slap noise, for now we have a “whoosh” sound for the hand when the animation plays to slap a student
-- Turning speed of Buzz was adjusted to make turning feel more responsive, although movement overall might need some adjustment and polishing for the final version of the game.
+- Ragdolls are meant to add comedic effects; directional vector force is applied to give slaps a bit of a weighty feeling
 
-3D World with Physical and Spatial Simulation:
-- Custom built level design using 3rd party assets to generate a student campus-like feel
-- Environmental physical interactions in the form of power ups located throughout campus that can be obtained as items from ragdolled students.
-    - Donut: power up that can be dropped by the user that will cause the police to chase the donut instead of Buzz
-    - White Claw: power up that will slow Buzz down
-    - Latte: power up that speeds up movement speed as a result of caffeine.
-- There are audio cues and stimulus to help reinforce the physical interaction when power ups and bone fragments are picked up. Likewise, we have implemented auditory features when Buzz ragdolls a student to help drive home physical interactions
+- Item effects, costs (from vending machine), and drop rate, were balanced with playtested feedback
+
+- Players are encouraged to collect and use items wisely in certain situations in order to beat the game
+
+- Consequences/cost to buying strong powerups involve setbacks to your overall game progress
+
+- Gentle learning curve. Players are initially set to a wanted level of 0 such that the police will not pursue Buzz
+
+- With higher wanted levels, more police spawn in, police will have increased chase speed, and police will have a larger search radius as they begin to more carefully search for Buzz
+
+- Player is constantly encouraged to be on the move to either slap students (students will slowly begin to aggregate in locations away from Buzz) or by running from the police
+
+  
+
+### 3D Character with Real Time Control:
+
+- Buzz can be moved with standard WASD movement
+
+- Buzz comes with root motion enabled, which blends in smooth movement when transitioning from standing → walking → running
+
+- Slap button is mapped to “fire1”. You can Left Mouse Click or space when in close proximity to a student to begin a slap animation.
+
+- Slap animations are implemented with IK, this maps Buzz’s hand to the students’ face when the animation is played
+
+- Slap animations are accompanied by a slap noise for auditory cues
+
+- Police and students smoothly transition with blending from their walking animations to their running animations
+
+  
+
+### 3D World with Physical and Spatial Simulation:
+
+- Custom built level design to generate a student campus-like feel
+
+- Purposefully created to fit the goofy and playful vibe of the game
+
+- Environmental physical interactions in the form of power ups located throughout campus that can be obtained as items from ragdolled students
+
+- Minimal clipping and players are confined to the bounds of the map (fence)
+
+-Donut: power up that can be dropped by the user that will cause the police to chase the donut instead of Buzz
+
+- White Claw: power up that will cause students to be attracted to Buzz’s popularity
+
+- Latte: power up that speeds up movement speed as a result of caffeine.
+
+- Honey: Makes Buzz temporarily invincible to the police
+
+- Audio cues and stimuli to help reinforce the physical interaction when power ups and bone fragments are picked up
+
+- Auditory features when Buzz ragdolls a student to help drive home physical interactions
+
 - Inverse kinematics is used to align Buzz’s punching animation with the head of the student he is about to ragdoll to aid with the spatial simulation and physical interactions of the game
+
 - Consistent running speed tied to framerate
 
-Real Time NPC Steering/AI:
-- Student NPCs (green) path find to various path nodes on the map. There are more waypoints near popular campus locations to drive home the feel of a campus environment. They select waypoints randomly in their waypoint array and will move from waypoint to waypoint. Some feedback we received and will plan on implementing include having students avoid areas in which buzz is seen slapping a student. To do this, we plan on having certain path nodes turn off when buzz is seen attacking another student. Students will have a chance to drop bones and power ups upon being slapped for the player to pick up and use.
-- Police NPCs (red) currently stand still and will find a path to buzz if he gets too near. Police will prioritize donuts over buzz
+  
 
-Polish:
-- UI
-    - The game contains a start menu on load, where you may start/exit the game.
-    - The game has a pause menu (press ESC), where you may restart or quit the game.
-    - The aesthetic of each UI scene/component was meant to replicate the look and feel of the buildings/campus, in color and style. It is consistent throughout each menu and helps make the game feel more cohesive as a whole.
-    - Inventory system that you can open with the (I) key. This shows what power ups are obtainable, as well as whether you have the item (the item will become filled in). It also shows which button will activate the item. This is modular and easily expandable to new powerups.
-- Environment Acknowledges Player:
-    - Students ragdoll with respect to the inverse kinematics of Buzz’s hand when he punches the students.
-    - The police chase Buzz when he is in range.
-    - There are unique sounds that activate for events, such as: powerup pickup, unique sounds when using each power up, sound for bone fragment pickup, and a unique sound for a student punch/slap.
-- Cohesiveness / Unified Aesthetic
-    - As previously mentioned, the UI was designed to fit the feel of the campus environment in the game in both color scheme and design aesthetic. Consistent assets were used to make sure the graphics feel cohesive and from one artist.
+### Real Time NPC Steering/AI:
 
+- Students will naturally path find to various locations around campus
+
+- Natural wandering behavior for the police
+
+- Nearby students will run away from Buzz if they witness him slapping a student
+
+- Nearby police will investigate the crime scene (area that Buzz slapped a student)
+
+- Police states (wandering, investigating, chasing, following)
+
+- Student states (pathing, fleeing, following)
+
+- Police and students have a smooth transition from their walking animations to running animations depending on their state
+
+- Police will yell when they begin to chase Buzz
+
+- Items directly interact with the behavior of the police and student AI
+
+- White claw (causes all nearby vicinity to begin following Buzz)
+
+- Donut (causes all police to begin following the donut over Buzz)
+
+  
+
+### Polish:
+
+
+* The game contains a start menu on load, where you may start/exit the game.
+
+* The game contains several other UI screens: opening dialog, “how to play” menu, character models and power-up introduction scene. These are included to facilitate and explain gameplay.
+
+* The game has a pause menu (press ESC), where you may restart or quit the game.
+
+* The aesthetic of each UI scene/component was meant to replicate the look and feel of the buildings/campus, in color and style. It is consistent throughout each menu and helps make the game feel more cohesive as a whole.
+
+* Inventory system is displayed at the bottom left of the screen. This shows what power ups are obtainable, as well as whether you have the item (the item will become filled in). It also shows which button will activate the item. This is modular and easily expandable to new powerups.
+
+* Bone collectible progress tracking bar (“Bone bar”) at the top right of the screen. This is to show the progress of the player, as the main goal of the game is to maximize the bone bar.
+
+* Minimap UI at the bottom right of the screen. Minimap gives the player a holistic view of their surroundings and allows them to see the placement of students and police.
+
+* “Wanted Level” count tracker at the top left of the screen. The wanted level of Buzz increases as he slaps students. The UI keeps track of his wanted level (higher the wanted level, faster the police).
+
+* Interactable vending machines with custom UI. Press “space” next to the vending machine to activate; press again to exit UI anytime during usage. UI allows the player to click and buy power-ups from the vending machine using bones as currency.
+
+* Students ragdoll with respect to the inverse kinematics of Buzz’s hand when he punches the students.
+
+* The police chase Buzz when he is in range.
+
+* There are unique sounds that activate for events, such as: powerup pickup, unique sounds when using each power up, sound for bone fragment pickup, and a unique sound for a student punch/slap.
+
+* UI was designed to fit the feel of the campus environment in the game in both color scheme and design aesthetic. Consistent assets were used to make sure the graphics feel cohesive and from one artist.
+
+  
+
+## External Resources
+
+* **Simple City pack plain** | 255 PIXEL STUDIOS | [https://assetstore.unity.com/packages/3d/environments/urban/simple-city-pack-plain-100348](https://assetstore.unity.com/packages/3d/environments/urban/simple-city-pack-plain-100348)
+
+* **Windridge City** | UNITY TECHNOLOGIES | [https://assetstore.unity.com/packages/3d/environments/roadways/windridge-city-132222](https://assetstore.unity.com/packages/3d/environments/roadways/windridge-city-132222)
+
+* **Free Trees** | DATH_ARTISAN | [https://assetstore.unity.com/packages/3d/vegetation/trees/free-trees-103208](https://assetstore.unity.com/packages/3d/vegetation/trees/free-trees-103208)
+
+* **25 Mixed Industrial Sign Pack** | VOLUMETRIC GAMES | [https://assetstore.unity.com/packages/3d/props/25-mixed-industrial-sign-pack-73180](https://assetstore.unity.com/packages/3d/props/25-mixed-industrial-sign-pack-73180)
+
+* **3D Game Props** | WISSAM EL HAJJ | [https://assetstore.unity.com/packages/3d/props/3d-game-props-61815](https://assetstore.unity.com/packages/3d/props/3d-game-props-61815)
+
+* **Basic motions Free pack** | Kevin Iglesias | [https://assetstore.unity.com/packages/3d/animations/basic-motions-free-pack-154271](https://assetstore.unity.com/packages/3d/animations/basic-motions-free-pack-154271)
+
+* **Police Badge Modern** | TurboSquid, Inc. | [https://assetstore.unity.com/packages/3d/props/police-badge-modern-2-113737](https://assetstore.unity.com/packages/3d/props/police-badge-modern-2-113737)
+
+* **Bull Dog Head** | [https://free3d.com/3d-model/bull-dog-65717.html](https://free3d.com/3d-model/bull-dog-65717.html)
+
+* **Police Baton** | [https://free3d.com/3d-model/police-baton-v1--317916.html](https://free3d.com/3d-model/police-baton-v1--317916.html)
+
+* **Beverage FREE WEEK! Drinks and Bottles** | [GooPi(Misha)](https://assetstore.unity.com/publishers/38140) | [https://assetstore.unity.com/packages/3d/props/food/beverage-free-week-drinks-and-bottles-165228](https://assetstore.unity.com/packages/3d/props/food/beverage-free-week-drinks-and-bottles-165228)
+
+* **3D Bakery Object** | Layer Lab | [https://assetstore.unity.com/packages/3d/props/food/3d-bakery-object-17167](https://assetstore.unity.com/packages/3d/props/food/3d-bakery-object-17167)
+
+* **FREE Casual Game SFX Pack** | Dustyroom | [https://assetstore.unity.com/packages/audio/sound-fx/free-casual-game-sfx-pack-54116](https://assetstore.unity.com/packages/audio/sound-fx/free-casual-game-sfx-pack-54116)
+
+* **Kerning City Music** | Nexon Inc. | [https://www.youtube.com/watch?v=mD2b0Xx7wPA](https://www.youtube.com/watch?v=mD2b0Xx7wPA)
+
+* **SHOTS** | LMFAO [https://www.youtube.com/watch?v=h-VTua1tZQs](https://www.youtube.com/watch?v=h-VTua1tZQs)
+
+* **Winnie The Pooh Theme Song** | Disney Studios Chorus [https://www.youtube.com/watch?v=V4IOrH_FMIs](https://www.youtube.com/watch?v=V4IOrH_FMIs)
+
+* **Hennesys Music** | Nexon Inc. | [https://downloads.khinsider.com/game-soundtracks/album/maplestory](https://downloads.khinsider.com/game-soundtracks/album/maplestory)
+
+* **God of War Music** | Sony | [https://downloads.khinsider.com/god-of-war](https://downloads.khinsider.com/god-of-war)
+
+  
+  
+
+# Scenes to open
+
+* Kevin_scene - Main game scene
+
+  
+  
+
+# Work Credit
+
+  
+
+## Ally
+
+* Menus: start, pause
+
+* Menu scenes: opening dialog, win/lose scene, “how to play”
+
+* In-game UI: bone-bar, minimap, wanted level tracker, inventory slots
+
+* Vending machine UI, escape mode UI
+
+* All logic and scripts associated with the above items (in Scripts>Menu)
+
+  
+
+## Eric
+
+* Police and student controller scripts
+
+* Police and student animation controllers
+
+* Police and student models
+
+* Preliminary AI pathing (Proof of concepts)
+
+* Ragdoll effects/activation
+
+* Student and police repawning
+
+  
+
+## Ben
+
+* Powerup Items Buzz Effects and Collectible object code heirarchy
+
+* Powerup Logic (Buzz speed up, student luring to player, Invinicibility, and donut drop, etc.)
+
+* Sound Design and Implementation
+
+* Music toggling and cues in menu and in-game
+
+* Powerup and Bulldog Graphics
+
+* Police AI - Police chase radius and speed management
+
+* Student AI - Student controller state machine for ragdoll, wander and running away states
+
+  
+
+## Kevin
+
+* Level design
+
+* Students run away from Buzz when he slaps nearby students
+
+* Student pathing
+
+* Police wander
+
+* Police investigates the crime scenes
+
+* In game music
+
+* Fixing ragdoll corpses
+
+* Video submission
+
+  
+
+## Chan
+
+* Buzz root motion script
+
+* Buzz input controller script
+
+* Buzz slappable script
+
+* Student hittable script
+
+* Buzz animation blending
+
+* Buzz graphic model
+
+* Powerup tweaks to work with root motion logic
+
+* Camera position during game play
+
+* Inverse Kinematics for punch directing to student's face
+
+* Vending machine colliders
+
+* Fixing unhittable student bug
